@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# This file is part of ranger, the console file manager.
+# This file is part of power-ranger, the console file manager.
 # License: GNU GPL version 3, see the file "AUTHORS" for details.
 # Author: Wojciech Siewierski <wojciech.siewierski@onet.pl>, 2018
 
@@ -8,7 +8,7 @@ from __future__ import (absolute_import, division, print_function)
 import re
 import mimetypes
 
-from ranger.container.directory import accept_file, InodeFilterConstants
+from power-ranger.container.directory import accept_file, InodeFilterConstants
 
 # pylint: disable=too-few-public-methods
 

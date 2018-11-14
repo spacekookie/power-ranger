@@ -1,4 +1,4 @@
-# This file is part of ranger, the console file manager.
+# This file is part of power-ranger, the console file manager.
 # License: GNU GPL version 3, see the file "AUTHORS" for details.
 # Author: David Barnett <davidbarnett2@gmail.com>, 2010
 
@@ -8,8 +8,8 @@ from __future__ import (absolute_import, division, print_function)
 
 import re
 
-from ranger.ext.widestring import WideString
-from ranger.gui import color
+from power-ranger.ext.widestring import WideString
+from power-ranger.gui import color
 
 
 # pylint: disable=invalid-name

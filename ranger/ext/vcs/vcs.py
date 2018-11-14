@@ -1,4 +1,4 @@
-# This file is part of ranger, the console file manager.
+# This file is part of power-ranger, the console file manager.
 # License: GNU GPL version 3, see the file "AUTHORS" for details.
 
 """VCS module"""
@@ -10,7 +10,7 @@ import subprocess
 import threading
 import time
 
-from ranger.ext import spawn
+from power-ranger.ext import spawn
 
 # Python 2 compatibility
 try:

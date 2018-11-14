@@ -1,4 +1,4 @@
-# This file is part of ranger, the console file manager.
+# This file is part of power-ranger, the console file manager.
 # License: GNU GPL version 3, see the file "AUTHORS" for details.
 
 from __future__ import (absolute_import, division, print_function)
@@ -7,7 +7,7 @@ import string
 import re
 import os
 
-from ranger.core.shared import FileManagerAware
+from power-ranger.core.shared import FileManagerAware
 
 ALLOWED_KEYS = string.ascii_letters + string.digits + "`'"
 
@@ -152,7 +152,7 @@ class Bookmarks(FileManagerAware):
 
             # determine if there have been changes
             if current == original and current != real:
-                continue   # another ranger instance has changed the bookmark
+                continue   # another power-ranger instance has changed the bookmark
 
             if key not in self.dct:
                 del real_dict[key]   # the user has deleted it

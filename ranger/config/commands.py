@@ -1,32 +1,32 @@
 # -*- coding: utf-8 -*-
-# This file is part of ranger, the console file manager.
-# This configuration file is licensed under the same terms as ranger.
+# This file is part of power-ranger, the console file manager.
+# This configuration file is licensed under the same terms as power-ranger.
 # ===================================================================
 #
-# NOTE: If you copied this file to /etc/ranger/commands_full.py or
-# ~/.config/ranger/commands_full.py, then it will NOT be loaded by ranger,
+# NOTE: If you copied this file to /etc/power-ranger/commands_full.py or
+# ~/.config/power-ranger/commands_full.py, then it will NOT be loaded by power-ranger,
 # and only serve as a reference.
 #
 # ===================================================================
-# This file contains ranger's commands.
+# This file contains power-ranger's commands.
 # It's all in python; lines beginning with # are comments.
 #
 # Note that additional commands are automatically generated from the methods
-# of the class ranger.core.actions.Actions.
+# of the class power-ranger.core.actions.Actions.
 #
-# You can customize commands in the files /etc/ranger/commands.py (system-wide)
-# and ~/.config/ranger/commands.py (per user).
+# You can customize commands in the files /etc/power-ranger/commands.py (system-wide)
+# and ~/.config/power-ranger/commands.py (per user).
 # They have the same syntax as this file.  In fact, you can just copy this
-# file to ~/.config/ranger/commands_full.py with
-# `ranger --copy-config=commands_full' and make your modifications, don't
+# file to ~/.config/power-ranger/commands_full.py with
+# `power-ranger --copy-config=commands_full' and make your modifications, don't
 # forget to rename it to commands.py.  You can also use
-# `ranger --copy-config=commands' to copy a short sample commands.py that
+# `power-ranger --copy-config=commands' to copy a short sample commands.py that
 # has everything you need to get started.
-# But make sure you update your configs when you update ranger.
+# But make sure you update your configs when you update power-ranger.
 #
 # ===================================================================
 # Every class defined here which is a subclass of `Command' will be used as a
-# command in ranger.  Several methods are defined to interface with ranger:
+# command in power-ranger.  Several methods are defined to interface with power-ranger:
 #   execute():   called when the command is executed.
 #   cancel():    called when closing the console.
 #   tab(tabnum): called when <TAB> is pressed.
@@ -60,17 +60,17 @@
 #      command was "search foo bar a b c", start(2) will be "search foo"
 #
 # ===================================================================
-# And this is a little reference for common ranger functions and objects:
+# And this is a little reference for common power-ranger functions and objects:
 #
 # self.fm: A reference to the "fm" object which contains most information
-#      about ranger.
+#      about power-ranger.
 # self.fm.notify(string): Print the given string on the screen.
 # self.fm.notify(string, bad=True): Print the given string in RED.
 # self.fm.reload_cwd(): Reload the current working directory.
 # self.fm.thisdir: The current working directory. (A File object.)
 # self.fm.thisfile: The current file. (A File object too.)
 # self.fm.thistab.get_selection(): A list of all selected files.
-# self.fm.execute_console(string): Execute the string as a ranger command.
+# self.fm.execute_console(string): Execute the string as a power-ranger command.
 # self.fm.open_console(string): Open the console with the given string
 #      already typed in for you.
 # self.fm.move(direction): Moves the cursor in the given direction, which
@@ -86,7 +86,7 @@
 # tfile.is_directory: True/False depending on whether it's a directory.
 #
 # For advanced commands it is unavoidable to dive a bit into the source code
-# of ranger.
+# of power-ranger.
 # ===================================================================
 
 from __future__ import (absolute_import, division, print_function)
@@ -95,7 +95,7 @@ from collections import deque
 import os
 import re
 
-from ranger.api.commands import Command
+from power-ranger.api.commands import Command
 
 
 class alias(Command):
@@ -306,7 +306,7 @@ class shell(Command):
             self.fm.execute_command(command, flags=flags)
 
     def tab(self, tabnum):
-        from ranger.ext.get_executables import get_executables
+        from power-ranger.ext.get_executables import get_executables
         if self.arg(1) and self.arg(1)[0] == '-':
             command = self.rest(2)
         else:
@@ -417,7 +417,7 @@ class open_with(Command):
 
     @staticmethod
     def _is_flags(arg):
-        from ranger.core.runner import ALLOWED_FLAGS
+        from power-ranger.core.runner import ALLOWED_FLAGS
         return all(x in ALLOWED_FLAGS for x in arg)
 
     @staticmethod
@@ -443,7 +443,7 @@ class set_(Command):
             self.fm.set_option_from_string(name, value)
 
     def tab(self, tabnum):  # pylint: disable=too-many-return-statements
-        from ranger.gui.colorscheme import get_all_colorschemes
+        from power-ranger.gui.colorscheme import get_all_colorschemes
         name, value, name_done = self.parse_setting_line()
         settings = self.fm.settings
         if not name:
@@ -526,7 +526,7 @@ class setintag(set_):
 class default_linemode(Command):
 
     def execute(self):
-        from ranger.container.fsobject import FileSystemObject
+        from power-ranger.container.fsobject import FileSystemObject
 
         if len(self.args) < 2:
             self.fm.notify(
@@ -638,7 +638,7 @@ class terminal(Command):
     """
 
     def execute(self):
-        from ranger.ext.get_executables import get_term
+        from power-ranger.ext.get_executables import get_term
         self.fm.run(get_term(), flags='f')
 
 
@@ -793,7 +793,7 @@ class load_copy_buffer(Command):
 
     def execute(self):
         import sys
-        from ranger.container.file import File
+        from power-ranger.container.file import File
         from os.path import exists
         fname = self.fm.datapath(self.copy_buffer_filename)
         unreadable = IOError if sys.version_info[0] < 3 else OSError
@@ -912,8 +912,8 @@ class eval_(Command):
     resolve_macros = False
 
     def execute(self):
-        # The import is needed so eval() can access the ranger module
-        import ranger  # NOQA pylint: disable=unused-import,unused-variable
+        # The import is needed so eval() can access the power-ranger module
+        import power-ranger  # NOQA pylint: disable=unused-import,unused-variable
         if self.arg(1) == '-q':
             code = self.rest(2)
             quiet = True
@@ -945,7 +945,7 @@ class rename(Command):
     """
 
     def execute(self):
-        from ranger.container.file import File
+        from power-ranger.container.file import File
         from os import access
 
         new_name = self.rest(1)
@@ -990,7 +990,7 @@ class rename_append(Command):
         self._flag_remove = 'r' in flags
 
     def execute(self):
-        from ranger import MACRO_DELIMITER, MACRO_DELIMITER_ESC
+        from power-ranger import MACRO_DELIMITER, MACRO_DELIMITER_ESC
 
         tfile = self.fm.thisfile
         relpath = tfile.relative_path.replace(MACRO_DELIMITER, MACRO_DELIMITER_ESC)
@@ -1066,8 +1066,8 @@ class bulkrename(Command):
     def execute(self):  # pylint: disable=too-many-locals,too-many-statements
         import sys
         import tempfile
-        from ranger.container.file import File
-        from ranger.ext.shell_escape import shell_escape as esc
+        from power-ranger.container.file import File
+        from power-ranger.ext.shell_escape import shell_escape as esc
         py3 = sys.version_info[0] >= 3
 
         # Create and edit the file list
@@ -1172,7 +1172,7 @@ class relink(Command):
 class help_(Command):
     """:help
 
-    Display ranger's manual page.
+    Display power-ranger's manual page.
     """
     name = 'help'
 
@@ -1559,7 +1559,7 @@ class filter_stack(Command):
         filter_stack show
     """
     def execute(self):
-        from ranger.core.filter_stack import SIMPLE_FILTERS, FILTER_COMBINATORS
+        from power-ranger.core.filter_stack import SIMPLE_FILTERS, FILTER_COMBINATORS
 
         subcommand = self.arg(1)
 
@@ -1651,7 +1651,7 @@ class stage(Command):
     """
 
     def execute(self):
-        from ranger.ext.vcs import VcsError
+        from power-ranger.ext.vcs import VcsError
 
         if self.fm.thisdir.vcs and self.fm.thisdir.vcs.track:
             filelist = [f.path for f in self.fm.thistab.get_selection()]
@@ -1672,7 +1672,7 @@ class unstage(Command):
     """
 
     def execute(self):
-        from ranger.ext.vcs import VcsError
+        from power-ranger.ext.vcs import VcsError
 
         if self.fm.thisdir.vcs and self.fm.thisdir.vcs.track:
             filelist = [f.path for f in self.fm.thistab.get_selection()]
@@ -1751,7 +1751,7 @@ class linemode(default_linemode):
 
     Change what is displayed as a filename.
 
-    - "mode" may be any of the defined linemodes (see: ranger.core.linemode).
+    - "mode" may be any of the defined linemodes (see: power-ranger.core.linemode).
       "normal" is mapped to "filename".
     """
 
@@ -1759,7 +1759,7 @@ class linemode(default_linemode):
         mode = self.arg(1)
 
         if mode == "normal":
-            from ranger.core.linemode import DEFAULT_LINEMODE
+            from power-ranger.core.linemode import DEFAULT_LINEMODE
             mode = DEFAULT_LINEMODE
 
         if mode not in self.fm.thisfile.linemode_dict:
@@ -1792,7 +1792,7 @@ class yank(Command):
         import subprocess
 
         def clipboards():
-            from ranger.ext.get_executables import get_executables
+            from power-ranger.ext.get_executables import get_executables
             clipboard_managers = {
                 'xclip': [
                     ['xclip'],

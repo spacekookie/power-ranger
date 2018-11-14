@@ -1,25 +1,25 @@
-ranger 1.9.2
+power-ranger 1.9.2
 ============
 
-[![Build Status](https://travis-ci.org/ranger/ranger.svg?branch=master)](https://travis-ci.org/ranger/ranger)
+[![Build Status](https://travis-ci.org/power-ranger/power-ranger.svg?branch=master)](https://travis-ci.org/power-ranger/power-ranger)
 
-ranger is a console file manager with VI key bindings.  It provides a
+power-ranger is a console file manager with VI key bindings.  It provides a
 minimalistic and nice curses interface with a view on the directory hierarchy.
 It ships with `rifle`, a file launcher that is good at automatically finding
 out which program to use for what file type.
 
-![screenshot](https://raw.githubusercontent.com/ranger/ranger-assets/master/screenshots/screenshot.png)
+![screenshot](https://raw.githubusercontent.com/power-ranger/power-ranger-assets/master/screenshots/screenshot.png)
 
-This file describes ranger and how to get it to run.  For instructions on the
+This file describes power-ranger and how to get it to run.  For instructions on the
 usage, please read the man page.  See `HACKING.md` for development specific
 information.
 
-For configuration, check the files in `ranger/config/` or copy the
-default config to `~/.config/ranger` with `ranger --copy-config`.
+For configuration, check the files in `power-ranger/config/` or copy the
+default config to `~/.config/power-ranger` with `power-ranger --copy-config`.
 
 The `examples/` directory contains several scripts and plugins that demonstrate how
-ranger can be extended or combined with other programs.  These files can be
-found in the git repository or in `/usr/share/doc/ranger`.
+power-ranger can be extended or combined with other programs.  These files can be
+found in the git repository or in `/usr/share/doc/power-ranger`.
 
 A note to packagers: Versions meant for packaging are listed in the changelog
 on the website.
@@ -29,10 +29,10 @@ About
 -----
 * Authors:     see `AUTHORS` file
 * License:     GNU General Public License Version 3
-* Website:     https://ranger.github.io/
-* Download:    https://ranger.github.io/ranger-stable.tar.gz
-* Bug reports: https://github.com/ranger/ranger/issues
-* git clone    https://github.com/ranger/ranger.git
+* Website:     https://power-ranger.github.io/
+* Download:    https://power-ranger.github.io/power-ranger-stable.tar.gz
+* Bug reports: https://github.com/power-ranger/power-ranger/issues
+* git clone    https://github.com/power-ranger/power-ranger.git
 
 
 Design Goals
@@ -52,7 +52,7 @@ Features
 * Renaming multiple files at once
 * VIM-like console and hotkeys
 * Automatically determine file types and run them with correct programs
-* Change the directory of your shell after exiting ranger
+* Change the directory of your shell after exiting power-ranger
 * Tabs, bookmarks, mouse support
 
 
@@ -85,10 +85,10 @@ Optional, for enhanced file previews (with `scope.sh`):
 
 Installing
 ----------
-Use the package manager of your operating system to install ranger.
-Note that ranger can be started without installing by simply running `ranger.py`.
+Use the package manager of your operating system to install power-ranger.
+Note that power-ranger can be started without installing by simply running `power-ranger.py`.
 
-To install ranger manually:
+To install power-ranger manually:
 ```
 sudo make install
 ```
@@ -99,17 +99,17 @@ sudo python setup.py install --optimize=1 --record=install_log.txt
 ```
 
 This also saves a list of all installed files to `install_log.txt`, which you can
-use to uninstall ranger.
+use to uninstall power-ranger.
 
 
 Getting Started
 ---------------
-After starting ranger, you can use the Arrow Keys or `h` `j` `k` `l` to navigate, `Enter`
+After starting power-ranger, you can use the Arrow Keys or `h` `j` `k` `l` to navigate, `Enter`
 to open a file or type `Q` to quit.  The third column shows a preview of the
 current file.  The second is the main column and the first shows the parent
 directory.
 
-Ranger can automatically copy default configuration files to `~/.config/ranger`
+Ranger can automatically copy default configuration files to `~/.config/power-ranger`
 if you run it with the switch `--copy-config=( rc | scope | ... | all )`.
-See `ranger --help` for a description of that switch.  Also check
-`ranger/config/` for the default configuration.
+See `power-ranger --help` for a description of that switch.  Also check
+`power-ranger/config/` for the default configuration.

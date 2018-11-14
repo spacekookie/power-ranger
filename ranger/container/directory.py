@@ -1,4 +1,4 @@
-# This file is part of ranger, the console file manager.
+# This file is part of power-ranger, the console file manager.
 # License: GNU GPL version 3, see the file "AUTHORS" for details.
 
 from __future__ import (absolute_import, division, print_function)
@@ -11,15 +11,15 @@ import re
 from collections import deque
 from time import time
 
-from ranger.container.fsobject import BAD_INFO, FileSystemObject
-from ranger.core.loader import Loadable
-from ranger.ext.mount_path import mount_path
-from ranger.container.file import File
-from ranger.ext.accumulator import Accumulator
-from ranger.ext.lazy_property import lazy_property
-from ranger.ext.human_readable import human_readable
-from ranger.container.settings import LocalSettings
-from ranger.ext.vcs import Vcs
+from power-ranger.container.fsobject import BAD_INFO, FileSystemObject
+from power-ranger.core.loader import Loadable
+from power-ranger.ext.mount_path import mount_path
+from power-ranger.container.file import File
+from power-ranger.ext.accumulator import Accumulator
+from power-ranger.ext.lazy_property import lazy_property
+from power-ranger.ext.human_readable import human_readable
+from power-ranger.container.settings import LocalSettings
+from power-ranger.ext.vcs import Vcs
 
 
 def sort_by_basename(path):

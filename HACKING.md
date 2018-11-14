@@ -42,16 +42,16 @@ Three numbers, `A.B.C`, where
 Starting Points
 ---------------
 
-Good places to read about ranger internals are:
+Good places to read about power-ranger internals are:
 
-* `ranger/core/actions.py`
-* `ranger/container/fsobject.py`
+* `power-ranger/core/actions.py`
+* `power-ranger/container/fsobject.py`
 
 About the UI:
 
-* `ranger/gui/widgets/browsercolumn.py`
-* `ranger/gui/widgets/browserview.py`
-* `ranger/gui/ui.py`
+* `power-ranger/gui/widgets/browsercolumn.py`
+* `power-ranger/gui/widgets/browserview.py`
+* `power-ranger/gui/ui.py`
 
 
 Common Changes
@@ -62,43 +62,43 @@ Adding options
 
 * Add a default value in `rc.conf`, along with a comment that describes the option.
 * Add the option to the `ALLOWED_SETTINGS` dictionary in the file
-  `ranger/container/settings.py` in alphabetical order.
-* Add an entry in the man page by editing `doc/ranger.pod`, then rebuild the man
-  page by running `make man` in the ranger root directory
+  `power-ranger/container/settings.py` in alphabetical order.
+* Add an entry in the man page by editing `doc/power-ranger.pod`, then rebuild the man
+  page by running `make man` in the power-ranger root directory
 
 The setting is now accessible with `self.settings.my_option`, assuming self is a
-subclass of `ranger.core.shared.SettingsAware`.
+subclass of `power-ranger.core.shared.SettingsAware`.
 
 
 Adding colorschemes
 -------------------
 
-* Copy `ranger/colorschemes/default.py` to `ranger/colorschemes/myscheme.py`
+* Copy `power-ranger/colorschemes/default.py` to `power-ranger/colorschemes/myscheme.py`
   and modify it according to your needs. Alternatively, create a subclass of
-  `ranger.colorschemes.default.Default` and override the `use` method, as it is
+  `power-ranger.colorschemes.default.Default` and override the `use` method, as it is
   done in the `Jungle` colorscheme.
 
-* Add this line to your `~/.config/ranger/rc.conf`:
+* Add this line to your `~/.config/power-ranger/rc.conf`:
   `set colorscheme myscheme`
 
 
 Change which programs start which file types
 --------------------------------------------
 
-Edit the configuration file `~/.config/ranger/rifle.conf`. The default one can
-be obtained by running `ranger --copy-config rifle`.
+Edit the configuration file `~/.config/power-ranger/rifle.conf`. The default one can
+be obtained by running `power-ranger --copy-config rifle`.
 
 
 Change which file extensions have which mime type
 -------------------------------------------------
 
-Modify `ranger/data/mime.types`. You may also add your own entries to `~/.mime.types`
+Modify `power-ranger/data/mime.types`. You may also add your own entries to `~/.mime.types`
 
 
 Change which files are previewed in the auto preview
 ----------------------------------------------------
 
-In `ranger/container/file.py`, change the constant `PREVIEW_BLACKLIST`
+In `power-ranger/container/file.py`, change the constant `PREVIEW_BLACKLIST`
 
 
 PGP key

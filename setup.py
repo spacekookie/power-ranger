@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# This file is part of ranger, the console file manager.
+# This file is part of power-ranger, the console file manager.
 # License: GNU GPL version 3, see the file "AUTHORS" for details.
 
 from __future__ import (absolute_import, division, print_function)
@@ -9,11 +9,11 @@ from hashlib import sha512
 import os
 import shutil
 
-import ranger
+import power-ranger
 
 
 SCRIPTS_PATH = 'build_scripts'
-EXECUTABLES_PATHS = ['/ranger/data/scope.sh']
+EXECUTABLES_PATHS = ['/power-ranger/data/scope.sh']
 
 
 # pylint: disable=import-error,no-name-in-module,ungrouped-imports
@@ -65,14 +65,14 @@ class InstallLib(install_lib):
 
 def main():
     setup(
-        name='ranger-fm',
+        name='power-ranger-fm',
         description='Vim-like file manager',
-        long_description=ranger.__doc__,
-        version=ranger.__version__,
-        author=ranger.__author__,
-        author_email=ranger.__email__,
-        license=ranger.__license__,
-        url='https://ranger.github.io',
+        long_description=power-ranger.__doc__,
+        version=power-ranger.__version__,
+        author=power-ranger.__author__,
+        author_email=power-ranger.__email__,
+        license=power-ranger.__license__,
+        url='https://power-ranger.github.io',
         keywords='file-manager vim console file-launcher file-preview',
         classifiers=[
             'Environment :: Console',
@@ -99,46 +99,46 @@ def main():
         cmdclass={'install_lib': InstallLib},
 
         scripts=scripts_hack(
-            ('ranger.py', 'ranger'),
-            ('ranger/ext/rifle.py', 'rifle'),
+            ('power-ranger.py', 'power-ranger'),
+            ('power-ranger/ext/rifle.py', 'rifle'),
         ),
         data_files=[
             ('share/applications', [
-                'doc/ranger.desktop',
+                'doc/power-ranger.desktop',
             ]),
             ('share/man/man1', [
-                'doc/ranger.1',
+                'doc/power-ranger.1',
                 'doc/rifle.1',
             ]),
-            ('share/doc/ranger', [
+            ('share/doc/power-ranger', [
                 'doc/colorschemes.md',
                 'CHANGELOG.md',
                 'HACKING.md',
                 'README.md',
             ]),
-            ('share/doc/ranger/config', findall('doc/config')),
-            ('share/doc/ranger/config/colorschemes', findall('doc/config/colorschemes')),
-            ('share/doc/ranger/examples', findall('examples')),
-            ('share/doc/ranger/tools', findall('doc/tools')),
+            ('share/doc/power-ranger/config', findall('doc/config')),
+            ('share/doc/power-ranger/config/colorschemes', findall('doc/config/colorschemes')),
+            ('share/doc/power-ranger/examples', findall('examples')),
+            ('share/doc/power-ranger/tools', findall('doc/tools')),
         ],
         package_data={
-            'ranger': [
+            'power-ranger': [
                 'data/*',
                 'config/rc.conf',
                 'config/rifle.conf',
             ],
         },
         packages=(
-            'ranger',
-            'ranger.api',
-            'ranger.colorschemes',
-            'ranger.config',
-            'ranger.container',
-            'ranger.core',
-            'ranger.ext',
-            'ranger.ext.vcs',
-            'ranger.gui',
-            'ranger.gui.widgets',
+            'power-ranger',
+            'power-ranger.api',
+            'power-ranger.colorschemes',
+            'power-ranger.config',
+            'power-ranger.container',
+            'power-ranger.core',
+            'power-ranger.ext',
+            'power-ranger.ext.vcs',
+            'power-ranger.gui',
+            'power-ranger.gui.widgets',
         ),
     )
 

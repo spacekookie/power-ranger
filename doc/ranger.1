@@ -133,16 +133,16 @@
 .\" ========================================================================
 .\"
 .IX Title "RANGER 1"
-.TH RANGER 1 "ranger-1.9.2" "2018-10-26" "ranger manual"
+.TH RANGER 1 "power-ranger-1.9.2" "2018-10-26" "power-ranger manual"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
 .nh
 .SH "NAME"
-ranger \- visual file manager
+power-ranger \- visual file manager
 .SH "SYNOPSIS"
 .IX Header "SYNOPSIS"
-\&\fBranger\fR [\fB\-\-version\fR] [\fB\-\-help\fR] [\fB\-\-debug\fR] [\fB\-\-clean\fR]
+\&\fBpower-ranger\fR [\fB\-\-version\fR] [\fB\-\-help\fR] [\fB\-\-debug\fR] [\fB\-\-clean\fR]
 [\fB\-\-cachedir\fR=\fIdirectory\fR] [\fB\-\-confdir\fR=\fIdirectory\fR]
 [\fB\-\-datadir\fR=\fIdirectory\fR] [\fB\-\-copy\-config\fR=\fIwhich\fR]
 [\fB\-\-choosefile\fR=\fItarget\fR] [\fB\-\-choosefiles\fR=\fItarget\fR]
@@ -152,12 +152,12 @@ ranger \- visual file manager
 [\fB\-\-profile\fR] [\fB\-\-cmd\fR=\fIcommand\fR] [\fIpath ...\fR]
 .SH "DESCRIPTION"
 .IX Header "DESCRIPTION"
-ranger is a console file manager with \s-1VI\s0 key bindings.
+power-ranger is a console file manager with \s-1VI\s0 key bindings.
 .SH "RESOURCES"
 .IX Header "RESOURCES"
-\&\fIThis manual\fR contains instructions on how to use and configure ranger.
+\&\fIThis manual\fR contains instructions on how to use and configure power-ranger.
 .PP
-\&\fIInside ranger\fR, you can press \fI?\fR for a list of key bindings, commands or
+\&\fIInside power-ranger\fR, you can press \fI?\fR for a list of key bindings, commands or
 settings.
 .PP
 The \fI\s-1README\s0\fR contains install instructions.
@@ -165,13 +165,13 @@ The \fI\s-1README\s0\fR contains install instructions.
 The file \fI\s-1HACKING\s0.md\fR contains guidelines for code modification.
 .PP
 The directory \fIdoc/configs\fR contains configuration files.  They are usually
-installed to \fI/usr/share/doc/ranger/config\fR and can be obtained with ranger's
+installed to \fI/usr/share/doc/power-ranger/config\fR and can be obtained with power-ranger's
 \&\-\-copy\-config option.
 .PP
-The directory \fIexamples\fR contains reference implementations for ranger
-plugins, sample configuration files and some programs for integrating ranger
+The directory \fIexamples\fR contains reference implementations for power-ranger
+plugins, sample configuration files and some programs for integrating power-ranger
 with other software.  They are usually installed to
-\&\fI/usr/share/doc/ranger/examples\fR.
+\&\fI/usr/share/doc/power-ranger/examples\fR.
 .PP
 The man page of \fBrifle\fR\|(1) describes the functions of the file opener
 .PP
@@ -186,23 +186,23 @@ Omitting this is equivalent to providing the current directory.
 .IX Header "OPTIONS"
 .IP "\fB\-d\fR, \fB\-\-debug\fR" 14
 .IX Item "-d, --debug"
-Activate the debug mode: Whenever an error occurs, ranger will exit and print a
+Activate the debug mode: Whenever an error occurs, power-ranger will exit and print a
 full traceback.  The default behavior is to merely print the name of the
 exception in the statusbar/log and try to keep running.
 .IP "\fB\-c\fR, \fB\-\-clean\fR" 14
 .IX Item "-c, --clean"
-Activate the clean mode:  ranger will not access or create any configuration
+Activate the clean mode:  power-ranger will not access or create any configuration
 files nor will it leave any traces on your system.  This is useful when your
 configuration is broken, when you want to avoid clutter, etc.
 .IP "\fB\-\-cachedir\fR=\fIdir\fR" 14
 .IX Item "--cachedir=dir"
-Change the cache directory of ranger from \f(CW$XDG_CACHE_HOME\fR or ~/.cache/ranger to \*(L"dir\*(R".
+Change the cache directory of power-ranger from \f(CW$XDG_CACHE_HOME\fR or ~/.cache/power-ranger to \*(L"dir\*(R".
 .IP "\fB\-r\fR \fIdir\fR, \fB\-\-confdir\fR=\fIdir\fR" 14
 .IX Item "-r dir, --confdir=dir"
-Change the configuration directory of ranger from \f(CW$XDG_CONFIG_HOME\fR or ~/.config/ranger to \*(L"dir\*(R".
+Change the configuration directory of power-ranger from \f(CW$XDG_CONFIG_HOME\fR or ~/.config/power-ranger to \*(L"dir\*(R".
 .IP "\fB\-\-datadir\fR=\fIdir\fR" 14
 .IX Item "--datadir=dir"
-Change the data directory of ranger from \f(CW$XDG_DATA_HOME\fR or ~/.local/share/ranger to \*(L"dir\*(R".
+Change the data directory of power-ranger from \f(CW$XDG_DATA_HOME\fR or ~/.local/share/power-ranger to \*(L"dir\*(R".
 .IP "\fB\-\-copy\-config\fR=\fIfile\fR" 14
 .IX Item "--copy-config=file"
 Create copies of the default configuration files in your local configuration
@@ -215,27 +215,27 @@ exporting \fIRANGER_LOAD_DEFAULT_RC=FALSE\fR in your environment.  See also:
 .Sp
 \&\-\-copy\-config=\fBcommands\fR will copy only a small sample configuration file with
 a thoroughly commented example.  It is recommended to keep this file tidy to
-avoid getting defunct commands on ranger upgrades.  The full default
+avoid getting defunct commands on power-ranger upgrades.  The full default
 commands.py can be copied with \-\-copy\-config=\fBcommands_full\fR, but that file
-will be ignored by ranger and serves only as a reference for making your own
+will be ignored by power-ranger and serves only as a reference for making your own
 commands.
 .IP "\fB\-\-choosefile\fR=\fItargetfile\fR" 14
 .IX Item "--choosefile=targetfile"
-Allows you to pick a file with ranger.  This changes the behavior so that when
-you open a file, ranger will exit and write the absolute path of that file into
+Allows you to pick a file with power-ranger.  This changes the behavior so that when
+you open a file, power-ranger will exit and write the absolute path of that file into
 \&\fItargetfile\fR.
 .IP "\fB\-\-choosefiles\fR=\fItargetfile\fR" 14
 .IX Item "--choosefiles=targetfile"
-Allows you to pick multiple files with ranger.  This changes the behavior so
-that when you open a file, ranger will exit and write the absolute paths of all
+Allows you to pick multiple files with power-ranger.  This changes the behavior so
+that when you open a file, power-ranger will exit and write the absolute paths of all
 selected files into \fItargetfile\fR, adding one newline after each filename.
 .IP "\fB\-\-choosedir\fR=\fItargetfile\fR" 14
 .IX Item "--choosedir=targetfile"
-Allows you to pick a directory with ranger.  When you exit ranger, it will
+Allows you to pick a directory with power-ranger.  When you exit power-ranger, it will
 write the last visited directory into \fItargetfile\fR.
 .IP "\fB\-\-selectfile\fR=\fItargetfile\fR" 14
 .IX Item "--selectfile=targetfile"
-Open ranger with \fItargetfile\fR selected. This is a legacy option, superseded by
+Open power-ranger with \fItargetfile\fR selected. This is a legacy option, superseded by
 the behavior for the \s-1POSITIONAL ARGUMENTS.\s0
 .IP "\fB\-\-show\-only\-dirs\fR" 14
 .IX Item "--show-only-dirs"
@@ -265,7 +265,7 @@ Print the version and exit.
 Print a list of options and exit.
 .SH "CONCEPTS"
 .IX Header "CONCEPTS"
-This part explains how certain parts of ranger work and how they can be used
+This part explains how certain parts of power-ranger work and how they can be used
 efficiently.
 .SS "\s-1TAGS\s0"
 .IX Subsection "TAGS"
@@ -278,7 +278,7 @@ typing \fI"<tagname>\fR.
 By default, only text files are previewed, but you can enable external preview
 scripts by setting the option \f(CW\*(C`use_preview_script\*(C'\fR and \f(CW\*(C`preview_files\*(C'\fR to true.
 .PP
-This default script is \fI\f(CI%rangerdir\fI/data/scope.sh\fR. It contains more
+This default script is \fI\f(CI%power-rangerdir\fI/data/scope.sh\fR. It contains more
 documentation and calls to the programs \fIlynx\fR and \fIelinks\fR for html,
 \&\fIhighlight\fR for text/code, \fIimg2txt\fR for images, \fIatool\fR for archives,
 \&\fIpdftotext\fR or \fImutool\fR for PDFs and \fImediainfo\fR for video and audio files.
@@ -387,9 +387,9 @@ Additionally, if you create a key binding that uses <any>, a special statement
 which accepts any key, then the macro \f(CW%any\fR (or \f(CW%any0\fR, \f(CW%any1\fR, \f(CW%any2\fR, ...) can be
 used in the command to get the key that was pressed.
 .PP
-The macro \f(CW%rangerdir\fR expands to the directory of ranger's python library, you
+The macro \f(CW%power-rangerdir\fR expands to the directory of power-ranger's python library, you
 can use it for something like this command:
-  alias show_commands shell less \f(CW%rangerdir\fR/config/commands.py
+  alias show_commands shell less \f(CW%power-rangerdir\fR/config/commands.py
 .PP
 \&\f(CW%confdir\fR expands to the directory given by \fB\-\-confdir\fR.
 .PP
@@ -414,20 +414,20 @@ Bookmarks are selectable when tabbing in the :cd command.
 Note: The bookmarks ' (Apostrophe) and ` (Backtick) are the same.
 .SS "\s-1RIFLE\s0"
 .IX Subsection "RIFLE"
-Rifle is the file opener of ranger.  It can be used as a standalone program or
-a python module.  It is located at \fIranger/ext/rifle.py\fR.  In contrast to
+Rifle is the file opener of power-ranger.  It can be used as a standalone program or
+a python module.  It is located at \fIpower-ranger/ext/rifle.py\fR.  In contrast to
 other, more simple file openers, rifle can automatically find installed
 programs so it can be used effectively out of the box on a variety of systems.
 .PP
 It's configured in \fIrifle.conf\fR through a list of conditions and commands.
 For each line the conditions are checked and if they are met, the respective
 command is taken into consideration.  By default, simply the first matching
-rule is used.  In ranger, you can list and choose rules by typing \*(L"r\*(R" or simply
+rule is used.  In power-ranger, you can list and choose rules by typing \*(L"r\*(R" or simply
 by typing \*(L"<rulenumber><enter>\*(R".  If you use rifle standalone, you can list all
 rules with the \*(L"\-l\*(R" option and pick a rule with \*(L"\-p <number>\*(R".
 .PP
 The rules, along with further documentation, are contained in
-\&\fIranger/config/rifle.conf\fR.
+\&\fIpower-ranger/config/rifle.conf\fR.
 .SS "\s-1FLAGS\s0"
 .IX Subsection "FLAGS"
 Flags give you a way to modify the behavior of the spawned process.  They are
@@ -459,14 +459,14 @@ uses \*(L"x\-terminal-emulator\*(R" as a fallback, and then \*(L"xterm\*(R" if t
 .PP
 Examples: \f(CW\*(C`:open_with c\*(C'\fR will open the file that you currently point at, even
 if you have selected other files.  \f(CW\*(C`:shell \-w df\*(C'\fR will run \*(L"df\*(R" and wait for
-you to press Enter before switching back to ranger.
+you to press Enter before switching back to power-ranger.
 .SS "\s-1PLUGINS\s0"
 .IX Subsection "PLUGINS"
-ranger's plugin system consists of python files which are located in
-\&\fI~/.config/ranger/plugins/\fR and are imported in alphabetical order when
-starting ranger.  A plugin changes rangers behavior by overwriting or extending
-a function that ranger uses.  This allows you to change pretty much every part
-of ranger, but there is no guarantee that things will continue to work in
+power-ranger's plugin system consists of python files which are located in
+\&\fI~/.config/power-ranger/plugins/\fR and are imported in alphabetical order when
+starting power-ranger.  A plugin changes power-rangers behavior by overwriting or extending
+a function that power-ranger uses.  This allows you to change pretty much every part
+of power-ranger, but there is no guarantee that things will continue to work in
 future versions as the source code evolves.
 .PP
 Adding new commands via a plugin as simple as specifying them like you would do
@@ -476,23 +476,23 @@ There are some hooks that are specifically made for the use in plugins.  They
 are functions that start with hook_ and can be found throughout the code.
 .PP
 .Vb 1
-\& grep \*(Aqdef hook_\*(Aq \-r /path/to/rangers/source
+\& grep \*(Aqdef hook_\*(Aq \-r /path/to/power-rangers/source
 .Ve
 .PP
 Also try:
 .PP
 .Vb 1
-\& pydoc ranger.api
+\& pydoc power-ranger.api
 .Ve
 .PP
 Note that you should \s-1NOT\s0 simply overwrite a function unless you know what
 you're doing.  Instead, save the existing function and call it from your new
 one.  This way, multiple plugins can use the same hook.  There are several
-sample plugins in the \fI/usr/share/doc/ranger/examples/\fR directory, including a
+sample plugins in the \fI/usr/share/doc/power-ranger/examples/\fR directory, including a
 hello-world plugin that describes this procedure.
 .SH "KEY BINDINGS"
 .IX Header "KEY BINDINGS"
-Key bindings are defined in the file \fI\f(CI%rangerdir\fI/config/rc.conf\fR.  Check this
+Key bindings are defined in the file \fI\f(CI%power-rangerdir\fI/config/rc.conf\fR.  Check this
 file for a list of all key bindings.  You can copy it to your local
 configuration directory with the \-\-copy\-config=rc option.
 .PP
@@ -549,12 +549,12 @@ Opens the log window where you can review messages that pop up at the bottom.
 .IP "w" 14
 .IX Item "w"
 Opens the task window where you can view and modify background processes that
-currently run in ranger.  In there, you can type \*(L"dd\*(R" to abort a process and
+currently run in power-ranger.  In there, you can type \*(L"dd\*(R" to abort a process and
 \&\*(L"J\*(R" or \*(L"K\*(R" to change the priority of a process.  Only one process is run at a
 time.
 .IP "^C" 14
 .IX Item "^C"
-Stop the currently running background process that ranger has started, like
+Stop the currently running background process that power-ranger has started, like
 copying files, loading directories or file previews.
 .IP "<octal>=, +<who><what>, \-<who><what>" 14
 .IX Item "<octal>=, +<who><what>, -<who><what>"
@@ -743,11 +743,11 @@ Scrolls up or down.  You can point at the column of the parent directory while
 scrolling to switch directories.
 .SH "SETTINGS"
 .IX Header "SETTINGS"
-This section lists all built-in settings of ranger.  The valid types for the
+This section lists all built-in settings of power-ranger.  The valid types for the
 value are in [brackets].  The hotkey to toggle the setting is in <brakets>, if
 a hotkey exists.
 .PP
-Settings can be changed in the file \fI~/.config/ranger/rc.conf\fR or on the
+Settings can be changed in the file \fI~/.config/power-ranger/rc.conf\fR or on the
 fly with the command \fB:set option value\fR.  Examples:
 .PP
 .Vb 2
@@ -774,18 +774,18 @@ The different types of settings and an example for each type:
 .Ve
 .PP
 You can view a list of all settings and their current values by pressing \*(L"3?\*(R"
-in ranger.
+in power-ranger.
 .IP "automatically_count_files [bool]" 4
 .IX Item "automatically_count_files [bool]"
-Should ranger count and display the number of files in each directory
+Should power-ranger count and display the number of files in each directory
 as soon as it's visible?  This gets slow with remote file systems.  Turning it
 off will still allow you to see the number of files after entering the
 directory.
 .IP "autosave_bookmarks [bool]" 4
 .IX Item "autosave_bookmarks [bool]"
 Save bookmarks (used with mX and `X) instantly?  This helps to synchronize
-bookmarks between multiple ranger instances but leads to *slight* performance
-loss.  When false, bookmarks are saved when ranger is exited.
+bookmarks between multiple power-ranger instances but leads to *slight* performance
+loss.  When false, bookmarks are saved when power-ranger is exited.
 .IP "autoupdate_cumulative_size [bool]" 4
 .IX Item "autoupdate_cumulative_size [bool]"
 You can display the \*(L"real\*(R" cumulative size of directories by using the command
@@ -829,7 +829,7 @@ with the preview column being as large as the other columns combined.
 .IP "confirm_on_delete [string]" 4
 .IX Item "confirm_on_delete [string]"
 Ask for a confirmation when running the \*(L"delete\*(R" command?  Valid values are
-\&\*(L"always\*(R" (default), \*(L"never\*(R", \*(L"multiple\*(R". With \*(L"multiple\*(R", ranger will ask only
+\&\*(L"always\*(R" (default), \*(L"never\*(R", \*(L"multiple\*(R". With \*(L"multiple\*(R", power-ranger will ask only
 if you delete multiple files at once.
 .IP "dirname_in_tabs [bool]" 4
 .IX Item "dirname_in_tabs [bool]"
@@ -863,7 +863,7 @@ currently running tasks which support progress bars?
 .IP "flushinput [bool] <zi>" 4
 .IX Item "flushinput [bool] <zi>"
 Flush the input after each key hit?  One advantage is that when scrolling down
-with \*(L"j\*(R", ranger stops scrolling instantly when you release the key.  One
+with \*(L"j\*(R", power-ranger stops scrolling instantly when you release the key.  One
 disadvantage is that when you type commands blindly, some keys might get lost.
 .IP "freeze_files [bool] <F>" 4
 .IX Item "freeze_files [bool] <F>"
@@ -876,7 +876,7 @@ Like filter_inode_type, but globally for all directories.  Useful in
 combination with \fB\-\-choosedir\fR:
 .Sp
 .Vb 1
-\& ranger \-\-choosedir=/tmp/x \-\-cmd=\*(Aqset global_inode_type_filter d\*(Aq
+\& power-ranger \-\-choosedir=/tmp/x \-\-cmd=\*(Aqset global_inode_type_filter d\*(Aq
 .Ve
 .IP "hidden_filter [string]" 4
 .IX Item "hidden_filter [string]"
@@ -898,7 +898,7 @@ Show hostname in titlebar?
 Print file sizes in bytes instead of the default human-readable format.
 .IP "idle_delay [integer]" 4
 .IX Item "idle_delay [integer]"
-The delay that ranger idly waits for user input, in milliseconds, with a
+The delay that power-ranger idly waits for user input, in milliseconds, with a
 resolution of 100ms.  Lower delay reduces lag between directory updates but
 increases \s-1CPU\s0 load.
 .IP "iterm2_font_height [integer]" 4
@@ -970,7 +970,7 @@ to disable this feature.
 .IP "preview_script [string, none]" 4
 .IX Item "preview_script [string, none]"
 Which script should handle generating previews?  If the file doesn't exist, or
-use_preview_script is off, ranger will handle previews itself by just printing
+use_preview_script is off, power-ranger will handle previews itself by just printing
 the content.
 .IP "relative_current_zero [bool]" 4
 .IX Item "relative_current_zero [bool]"
@@ -983,7 +983,7 @@ directory by typing \f(CW\*(C`\`\`\*(C'\fR.
 .IP "save_console_history [bool]" 4
 .IX Item "save_console_history [bool]"
 Should the console history be saved on exit?  If disabled, the console history
-is reset when you restart ranger.
+is reset when you restart power-ranger.
 .IP "save_tabs_on_exit [bool]" 4
 .IX Item "save_tabs_on_exit [bool]"
 Save all tabs, except the active, on exit? The last saved tabs are restored once
@@ -1034,7 +1034,7 @@ combination, e.g. \*(L"oN\*(R" to sort from Z to A.
 Put the status bar at the top of the window?
 .IP "tilde_in_titlebar [bool]" 4
 .IX Item "tilde_in_titlebar [bool]"
-Abbreviate \f(CW$HOME\fR with ~ in the titlebar (first line) of ranger?
+Abbreviate \f(CW$HOME\fR with ~ in the titlebar (first line) of power-ranger?
 .IP "unicode_ellipsis [bool]" 4
 .IX Item "unicode_ellipsis [bool]"
 Use a unicode \*(L"...\*(R" character instead of \*(L"~\*(R" to mark cut-off filenames?
@@ -1048,7 +1048,7 @@ Requires the python-bidi pip package.
 Set a window title?
 .IP "update_tmux_title [bool]" 4
 .IX Item "update_tmux_title [bool]"
-Set the title to \*(L"ranger\*(R" in the tmux program?
+Set the title to \*(L"power-ranger\*(R" in the tmux program?
 .IP "use_preview_script [bool] <zv>" 4
 .IX Item "use_preview_script [bool] <zv>"
 Use the preview script defined in the setting \fIpreview_script\fR?
@@ -1091,7 +1091,7 @@ Enable this if key combinations with the Alt Key don't work for you.
 You can enter the commands in the console which is opened by pressing \*(L":\*(R".
 .PP
 You can always get a list of the currently existing commands by typing \*(L"2?\*(R" in
-ranger.  For your convenience, this is a list of the \*(L"public\*(R" commands including their parameters, excluding descriptions:
+power-ranger.  For your convenience, this is a list of the \*(L"public\*(R" commands including their parameters, excluding descriptions:
 .PP
 .Vb 10
 \& alias [newcommand] [oldcommand]
@@ -1156,7 +1156,7 @@ ranger.  For your convenience, this is a list of the \*(L"public\*(R" commands i
 .Ve
 .PP
 There are additional commands which are directly translated to python
-functions, one for every method in the ranger.core.actions.Actions class.
+functions, one for every method in the power-ranger.core.actions.Actions class.
 They are not documented here, since they are mostly for key bindings, not to be
 typed in by a user.  Read the source if you are interested in them.
 .PP
@@ -1236,7 +1236,7 @@ Set the default linemode for all files in ~/books/ to \*(L"metatitle\*(R":
  :default_linemode path=/home/.*?/books/.* metatitle
 .IP "delete" 2
 .IX Item "delete"
-Destroy all files in the selection with a roundhouse kick.  ranger will ask for
+Destroy all files in the selection with a roundhouse kick.  power-ranger will ask for
 a confirmation if you attempt to delete multiple (marked) files or non-empty
 directories.  This can be changed by modifying the setting \*(L"confirm_on_delete\*(R".
 .IP "echo \fItext\fR" 2
@@ -1284,7 +1284,7 @@ values \-2 and less are invalid.
 Looks for a string in all marked files or directories.
 .IP "help" 2
 .IX Item "help"
-Provides a quick way to view ranger documentations.
+Provides a quick way to view power-ranger documentations.
 .IP "jump_non [\-\fIflags\fR...]" 2
 .IX Item "jump_non [-flags...]"
 Jumps to first non-directory if highlighted file is a directory and vice versa.
@@ -1306,11 +1306,11 @@ Sets the linemode of all files in the current directory.  The linemode may be:
 .Ve
 .Sp
 The custom linemodes may be added by subclassing the \fILinemodeBase\fR class.
-See the \fIranger.core.linemode\fR module for some examples.
+See the \fIpower-ranger.core.linemode\fR module for some examples.
 .IP "load_copy_buffer" 2
 .IX Item "load_copy_buffer"
-Load the copy buffer from \fI~/.config/ranger/copy_buffer\fR.  This can be used to
-pass the list of copied files to another ranger instance.
+Load the copy buffer from \fI~/.config/power-ranger/copy_buffer\fR.  This can be used to
+pass the list of copied files to another power-ranger instance.
 .IP "map \fIkey\fR \fIcommand\fR" 2
 .IX Item "map key command"
 Assign the key combination to the given command.  Whenever you type the
@@ -1351,7 +1351,7 @@ which case the default application is used.  \fIflags\fR change the way the
 application is executed and are described in their own section in this man
 page.  The \fImode\fR is a number that specifies which application to use.  The list
 of applications is generated by the external file opener \*(L"rifle\*(R" and can be
-displayed when pressing \*(L"r\*(R" in ranger.
+displayed when pressing \*(L"r\*(R" in power-ranger.
 .Sp
 Note that if you specify an application, the mode is ignored.
 .IP "pmap \fIkey\fR \fIcommand\fR" 2
@@ -1368,7 +1368,7 @@ Removes key mappings of the pager. Works like the \f(CW\*(C`unmap\*(C'\fR comman
 .IX Item "quit"
 Closes the current tab, if there's only one tab. Otherwise quits if there are no tasks in progress.
 The current directory will be bookmarked as ' so you can re-enter it by typing `` or '' the next time you
-start ranger.
+start power-ranger.
 .IP "quit!" 2
 .IX Item "quit!"
 Like \f(CW\*(C`quit\*(C'\fR, except will force quit even if tasks are in progress.
@@ -1396,8 +1396,8 @@ Flags:
  \-r    Remove everything before extensions
 .IP "save_copy_buffer" 2
 .IX Item "save_copy_buffer"
-Save the copy buffer to \fI~/.config/ranger/copy_buffer\fR.  This can be used to
-pass the list of copied files to another ranger instance.
+Save the copy buffer to \fI~/.config/power-ranger/copy_buffer\fR.  This can be used to
+pass the list of copied files to another power-ranger instance.
 .IP "scout [\-\fIflags\fR...] [\-\-] \fIpattern\fR" 2
 .IX Item "scout [-flags...] [--] pattern"
 Swiss army knife command for searching, traveling and filtering files.
@@ -1477,12 +1477,12 @@ splitting. \fIpath='~/dl dl$'\fR or \fIpath=\*(L"~/dl dl$\*(R"\fR
 Run a shell command.  \fIflags\fR are discussed in their own section.
 .IP "source \fIfilename\fR" 2
 .IX Item "source filename"
-Reads commands from a file and executes them in the ranger console.
+Reads commands from a file and executes them in the power-ranger console.
 .Sp
 This can be used to re-evaluate the rc.conf file after changing it:
 .Sp
 .Vb 1
-\& map X chain shell vim \-p %confdir/rc.conf %rangerdir/config/rc.conf; source %confdir/rc.conf
+\& map X chain shell vim \-p %confdir/rc.conf %power-rangerdir/config/rc.conf; source %confdir/rc.conf
 .Ve
 .IP "scroll_preview \fIvalue\fR" 2
 .IX Item "scroll_preview value"
@@ -1523,8 +1523,8 @@ Unmark all tags that are tagged with either of the given tags.  When leaving
 out the tag argument, all tagged files are unmarked.
 .SH "FILES"
 .IX Header "FILES"
-ranger reads several configuration files which are located in
-\&\fI\f(CI$HOME\fI/.config/ranger\fR or \fI\f(CI$XDG_CONFIG_HOME\fI/ranger\fR if \f(CW$XDG_CONFIG_HOME\fR is
+power-ranger reads several configuration files which are located in
+\&\fI\f(CI$HOME\fI/.config/power-ranger\fR or \fI\f(CI$XDG_CONFIG_HOME\fI/power-ranger\fR if \f(CW$XDG_CONFIG_HOME\fR is
 defined.  You can use the \-\-copy\-config option to obtain the default
 configuration files.  The files contain further documentation.
 .PP
@@ -1535,11 +1535,11 @@ being bound despite the corresponding line being removed from the user's copy of
 the configuration file. This behavior may be disabled with an environment
 variable (see also: \fB\s-1ENVIRONMENT\s0\fR). Note: All other configuration files only
 read from one source; i.e. default \s-1OR\s0 user, not both.
-\&\fIrc.conf\fR and \fIcommands.py\fR are additionally read from \fI/etc/ranger\fR if they
+\&\fIrc.conf\fR and \fIcommands.py\fR are additionally read from \fI/etc/power-ranger\fR if they
 exist for system-wide configuration, user configuration overrides system
 configuration which overrides the default configuration.
 .PP
-When starting ranger with the \fB\-\-clean\fR option, it will not access or create
+When starting power-ranger with the \fB\-\-clean\fR option, it will not access or create
 any of these files.
 .SS "\s-1CONFIGURATION\s0"
 .IX Subsection "CONFIGURATION"
@@ -1549,13 +1549,13 @@ Contains a list of commands which are executed on startup.  Mostly key bindings
 and settings are defined here.
 .IP "commands.py" 10
 .IX Item "commands.py"
-A python module that defines commands which can be used in ranger's console by
+A python module that defines commands which can be used in power-ranger's console by
 typing \*(L":\*(R" or in the rc.conf file.  Note that you can define commands in the
 same manner within plugins.
 .IP "commands_full.py" 10
 .IX Item "commands_full.py"
 This file is copied by \-\-copy\-config=commands_full and serves as a reference
-for custom commands.  It is entirely ignored by ranger.
+for custom commands.  It is entirely ignored by power-ranger.
 .IP "rifle.conf" 10
 .IX Item "rifle.conf"
 This is the configuration file for the built-in file launcher called \*(L"rifle\*(R".
@@ -1564,7 +1564,7 @@ This is the configuration file for the built-in file launcher called \*(L"rifle\
 This is a script that handles file previews.  When the options
 \&\fIuse_preview_script\fR and \fIpreview_files\fR are set, the program specified in
 the option \fIpreview_script\fR is run and its output and/or exit code determines
-rangers reaction.
+power-rangers reaction.
 .IP "colorschemes/" 10
 .IX Item "colorschemes/"
 Colorschemes can be placed here.
@@ -1577,13 +1577,13 @@ Plugins can be placed here.
 .IX Item "bookmarks"
 This file contains a list of bookmarks.  The syntax is /^(.):(.*)$/. The first
 character is the bookmark key and the rest after the colon is the path to the
-file.  In ranger, bookmarks can be set by typing m<key>, accessed by typing
+file.  In power-ranger, bookmarks can be set by typing m<key>, accessed by typing
 \&'<key> and deleted by typing um<key>.
 .IP "copy_buffer" 10
 .IX Item "copy_buffer"
 When running the command :save_copy_buffer, the paths of all currently copied
 files are saved in this file.  You can later run :load_copy_buffer to copy the
-same files again, pass them to another ranger instance or process them in a
+same files again, pass them to another power-ranger instance or process them in a
 script.
 .IP "history" 10
 .IX Item "history"
@@ -1592,20 +1592,20 @@ Contains a list of commands that have been previously typed in.
 .IX Item "tagged"
 Contains a list of tagged files. The syntax is /^(.:)?(.*)$/ where the first
 letter is the optional name of the tag and the rest after the optional colon is
-the path to the file.  In ranger, tags can be set by pressing t and removed
+the path to the file.  In power-ranger, tags can be set by pressing t and removed
 with T.  To assign a named tag, type "<tagname>.
 .SH "ENVIRONMENT"
 .IX Header "ENVIRONMENT"
-These environment variables have an effect on ranger:
+These environment variables have an effect on power-ranger:
 .IP "\s-1RANGER_LEVEL\s0" 8
 .IX Item "RANGER_LEVEL"
-ranger sets this environment variable to \*(L"1\*(R" or increments it if it already
-exists.  External programs can determine whether they were spawned from ranger
+power-ranger sets this environment variable to \*(L"1\*(R" or increments it if it already
+exists.  External programs can determine whether they were spawned from power-ranger
 by checking for this variable.
 .IP "\s-1RANGER_LOAD_DEFAULT_RC\s0" 8
 .IX Item "RANGER_LOAD_DEFAULT_RC"
-If this variable is set to \s-1FALSE,\s0 ranger will not load the default rc.conf.
-This can save time if you copied the whole rc.conf to ~/.config/ranger/ and
+If this variable is set to \s-1FALSE,\s0 power-ranger will not load the default rc.conf.
+This can save time if you copied the whole rc.conf to ~/.config/power-ranger/ and
 don't need the default one at all.
 .IP "\s-1VISUAL\s0" 8
 .IX Item "VISUAL"
@@ -1617,11 +1617,11 @@ Defines the editor to be used for the \*(L"E\*(R" key if \s-1VISUAL\s0 is undefi
 Defaults to \*(L"vim\*(R".
 .IP "\s-1SHELL\s0" 8
 .IX Item "SHELL"
-Defines the shell that ranger is going to use with the :shell command and
+Defines the shell that power-ranger is going to use with the :shell command and
 the \*(L"S\*(R" key.  Defaults to \*(L"/bin/sh\*(R".
 .IP "\s-1TERMCMD\s0" 8
 .IX Item "TERMCMD"
-Defines the terminal emulator command that ranger is going to use with the
+Defines the terminal emulator command that power-ranger is going to use with the
 :terminal command and the \*(L"t\*(R" run flag.  Defaults to \*(L"xterm\*(R".
 .IP "\s-1XDG_CONFIG_HOME\s0" 8
 .IX Item "XDG_CONFIG_HOME"
@@ -1641,38 +1641,38 @@ By changing this variable, you can change the path of the executable file for
 image previews.  By default, it is set to \fI/usr/lib/w3m/w3mimgdisplay\fR.
 .SH "EXAMPLES"
 .IX Header "EXAMPLES"
-There are various examples on how to extend ranger with plugins or combine
-ranger with other programs.  These can be found in the
-\&\fI/usr/share/doc/ranger/examples/\fR directory, or the \fIdoc/ranger/\fR that is
+There are various examples on how to extend power-ranger with plugins or combine
+power-ranger with other programs.  These can be found in the
+\&\fI/usr/share/doc/power-ranger/examples/\fR directory, or the \fIdoc/power-ranger/\fR that is
 provided along with the source code.
 .SH "LICENSE"
 .IX Header "LICENSE"
 \&\s-1GNU\s0 General Public License 3 or (at your option) any later version.
 .SH "LINKS"
 .IX Header "LINKS"
-.IP "Download: <https://ranger.github.io/ranger\-stable.tar.gz>" 4
-.IX Item "Download: <https://ranger.github.io/ranger-stable.tar.gz>"
+.IP "Download: <https://power-ranger.github.io/power-ranger\-stable.tar.gz>" 4
+.IX Item "Download: <https://power-ranger.github.io/power-ranger-stable.tar.gz>"
 .PD 0
-.IP "The project page: <https://ranger.github.io/>" 4
-.IX Item "The project page: <https://ranger.github.io/>"
-.IP "The mailing list: <https://savannah.nongnu.org/mail/?group=ranger>" 4
-.IX Item "The mailing list: <https://savannah.nongnu.org/mail/?group=ranger>"
-.IP "\s-1IRC\s0 channel: #ranger on freenode.net" 4
-.IX Item "IRC channel: #ranger on freenode.net"
+.IP "The project page: <https://power-ranger.github.io/>" 4
+.IX Item "The project page: <https://power-ranger.github.io/>"
+.IP "The mailing list: <https://savannah.nongnu.org/mail/?group=power-ranger>" 4
+.IX Item "The mailing list: <https://savannah.nongnu.org/mail/?group=power-ranger>"
+.IP "\s-1IRC\s0 channel: #power-ranger on freenode.net" 4
+.IX Item "IRC channel: #power-ranger on freenode.net"
 .PD
 .PP
-ranger is maintained with the git version control system.  To fetch a fresh
+power-ranger is maintained with the git version control system.  To fetch a fresh
 copy, run:
 .PP
 .Vb 1
-\& git clone git@github.com:ranger/ranger.git
+\& git clone git@github.com:power-ranger/power-ranger.git
 .Ve
 .SH "SEE ALSO"
 .IX Header "SEE ALSO"
 \&\fBrifle\fR\|(1)
 .SH "BUGS"
 .IX Header "BUGS"
-Report bugs here: <https://github.com/ranger/ranger/issues>
+Report bugs here: <https://github.com/power-ranger/power-ranger/issues>
 .PP
 Please include as much relevant information as possible.  For the most
-diagnostic output, run ranger like this: \f(CW\*(C`PYTHONOPTIMIZE= ranger \-\-debug\*(C'\fR
+diagnostic output, run power-ranger like this: \f(CW\*(C`PYTHONOPTIMIZE= power-ranger \-\-debug\*(C'\fR

@@ -1,20 +1,20 @@
-# This file is part of ranger, the console file manager.
+# This file is part of power-ranger, the console file manager.
 # License: GNU GPL version 3, see the file "AUTHORS" for details.
 
 """Files in this module contain helper functions used in configuration files."""
 
 from __future__ import (absolute_import, division, print_function)
 
-import ranger
-from ranger.core.linemode import LinemodeBase
+import power-ranger
+from power-ranger.core.linemode import LinemodeBase
 
 
-__all__ = ['ranger', 'LinemodeBase', 'hook_init', 'hook_ready', 'register_linemode']
+__all__ = ['power-ranger', 'LinemodeBase', 'hook_init', 'hook_ready', 'register_linemode']
 
 
 # Hooks for use in plugins:
 def hook_init(fm):  # pylint: disable=unused-argument
-    """A hook that is called when ranger starts up.
+    """A hook that is called when power-ranger starts up.
 
     Parameters:
       fm = the file manager instance
@@ -28,7 +28,7 @@ def hook_init(fm):  # pylint: disable=unused-argument
 
 
 def hook_ready(fm):  # pylint: disable=unused-argument
-    """A hook that is called after the ranger UI is initialized.
+    """A hook that is called after the power-ranger UI is initialized.
 
     Parameters:
       fm = the file manager instance
@@ -41,7 +41,7 @@ def hook_ready(fm):  # pylint: disable=unused-argument
 
 
 def register_linemode(linemode_class):
-    """Add a custom linemode class.  See ranger.core.linemode"""
-    from ranger.container.fsobject import FileSystemObject
+    """Add a custom linemode class.  See power-ranger.core.linemode"""
+    from power-ranger.container.fsobject import FileSystemObject
     FileSystemObject.linemode_dict[linemode_class.name] = linemode_class()
     return linemode_class

@@ -2,7 +2,7 @@
 
 from __future__ import (absolute_import, division, print_function)
 
-from ranger.gui.displayable import Displayable
+from power-ranger.gui.displayable import Displayable
 
 
 class Widget(Displayable):

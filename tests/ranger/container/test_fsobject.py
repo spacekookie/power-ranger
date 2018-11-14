@@ -2,7 +2,7 @@ from __future__ import (absolute_import, division, print_function)
 
 import operator
 
-from ranger.container.fsobject import FileSystemObject
+from power-ranger.container.fsobject import FileSystemObject
 
 
 class MockFM(object):  # pylint: disable=too-few-public-methods

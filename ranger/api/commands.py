@@ -1,4 +1,4 @@
-# This file is part of ranger, the console file manager.
+# This file is part of power-ranger, the console file manager.
 # License: GNU GPL version 3, see the file "AUTHORS" for details.
 
 # TODO: Add an optional "!" to all commands and set a flag if it's there
@@ -8,11 +8,11 @@ from __future__ import (absolute_import, division, print_function)
 import os
 import re
 
-import ranger
-from ranger import MACRO_DELIMITER, MACRO_DELIMITER_ESC
-from ranger.core.shared import FileManagerAware
-from ranger.ext.lazy_property import lazy_property
-from ranger.api import LinemodeBase, hook_init, hook_ready, register_linemode  # COMPAT
+import power-ranger
+from power-ranger import MACRO_DELIMITER, MACRO_DELIMITER_ESC
+from power-ranger.core.shared import FileManagerAware
+from power-ranger.ext.lazy_property import lazy_property
+from power-ranger.api import LinemodeBase, hook_init, hook_ready, register_linemode  # COMPAT
 
 
 __all__ = ['Command', 'LinemodeBase', 'hook_init', 'hook_ready', 'register_linemode']  # COMPAT
@@ -255,7 +255,7 @@ class Command(FileManagerAware):
     @lazy_property
     def log(self):
         import logging
-        return logging.getLogger('ranger.commands.' + self.__class__.__name__)
+        return logging.getLogger('power-ranger.commands.' + self.__class__.__name__)
 
     # COMPAT: this is still used in old commands.py configs
     def _tab_only_directories(self):
@@ -370,7 +370,7 @@ class Command(FileManagerAware):
             return (self.start(1) + join(rel_dirname, name) for name in names)
 
     def _tab_through_executables(self):
-        from ranger.ext.get_executables import get_executables
+        from power-ranger.ext.get_executables import get_executables
         programs = [program for program in get_executables() if
                     program.startswith(self.rest(1))]
         if not programs:
@@ -437,7 +437,7 @@ def command_function_factory(func):
                         del kwargs['narg']
                         return func(*args, **kwargs)
             except TypeError:
-                if ranger.args.debug:
+                if power-ranger.args.debug:
                     raise
                 self.fm.notify("Bad arguments for %s: %s, %s" % (func.__name__, args, kwargs),
                                bad=True)

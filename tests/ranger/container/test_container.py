@@ -1,6 +1,6 @@
 from __future__ import (absolute_import, division, print_function)
 
-from ranger.container import history
+from power-ranger.container import history
 
 
 HISTORY_TEST_ENTRIES = [str(k) for k in range(20)]

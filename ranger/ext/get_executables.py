@@ -1,4 +1,4 @@
-# This file is part of ranger, the console file manager.
+# This file is part of power-ranger, the console file manager.
 # License: GNU GPL version 3, see the file "AUTHORS" for details.
 
 from __future__ import (absolute_import, division, print_function)
@@ -7,7 +7,7 @@ from stat import S_IXOTH, S_IFREG
 from os import listdir, environ, stat
 import shlex
 
-from ranger.ext.iter_tools import unique
+from power-ranger.ext.iter_tools import unique
 
 
 _cached_executables = None  # pylint: disable=invalid-name

@@ -1,4 +1,4 @@
-# This file is part of ranger, the console file manager.
+# This file is part of power-ranger, the console file manager.
 # License: GNU GPL version 3, see the file "AUTHORS" for details.
 
 """The File Manager, putting the pieces together"""
@@ -14,25 +14,25 @@ import socket
 import stat
 import sys
 
-import ranger.api
-from ranger.core.actions import Actions
-from ranger.core.tab import Tab
-from ranger.container import settings
-from ranger.container.tags import Tags, TagsDummy
-from ranger.gui.ui import UI
-from ranger.container.bookmarks import Bookmarks
-from ranger.core.runner import Runner
-from ranger.ext.img_display import (W3MImageDisplayer, ITerm2ImageDisplayer,
+import power-ranger.api
+from power-ranger.core.actions import Actions
+from power-ranger.core.tab import Tab
+from power-ranger.container import settings
+from power-ranger.container.tags import Tags, TagsDummy
+from power-ranger.gui.ui import UI
+from power-ranger.container.bookmarks import Bookmarks
+from power-ranger.core.runner import Runner
+from power-ranger.ext.img_display import (W3MImageDisplayer, ITerm2ImageDisplayer,
                                     TerminologyImageDisplayer,
                                     URXVTImageDisplayer, URXVTImageFSDisplayer,
                                     KittyImageDisplayer, UeberzugImageDisplayer,
                                     ImageDisplayer)
-from ranger.core.metadata import MetadataManager
-from ranger.ext.rifle import Rifle
-from ranger.container.directory import Directory
-from ranger.ext.signals import SignalDispatcher
-from ranger.core.loader import Loader
-from ranger.ext import logutils
+from power-ranger.core.metadata import MetadataManager
+from power-ranger.ext.rifle import Rifle
+from power-ranger.container.directory import Directory
+from power-ranger.ext.signals import SignalDispatcher
+from power-ranger.core.loader import Loader
+from power-ranger.ext import logutils
 
 
 class FM(Actions,  # pylint: disable=too-many-instance-attributes
@@ -58,7 +58,7 @@ class FM(Actions,  # pylint: disable=too-many-instance-attributes
         self.current_tab = 1
         self.tabs = {}
         self.tags = tags
-        self.restorable_tabs = deque([], ranger.MAX_RESTORABLE_TABS)
+        self.restorable_tabs = deque([], power-ranger.MAX_RESTORABLE_TABS)
         self.py3 = sys.version_info >= (3, )
         self.previews = {}
         self.default_linemodes = deque()
@@ -94,7 +94,7 @@ class FM(Actions,  # pylint: disable=too-many-instance-attributes
             self.current_tab = 1
             self.tabs[self.current_tab] = self.thistab = Tab('.')
 
-        if not ranger.args.clean and os.path.isfile(self.confpath('rifle.conf')):
+        if not power-ranger.args.clean and os.path.isfile(self.confpath('rifle.conf')):
             rifleconf = self.confpath('rifle.conf')
         else:
             rifleconf = self.relpath('config/rifle.conf')
@@ -114,13 +114,13 @@ class FM(Actions,  # pylint: disable=too-many-instance-attributes
             lambda signal: signal.fm.previews.clear(),
         )
 
-        if ranger.args.clean:
+        if power-ranger.args.clean:
             self.tags = TagsDummy("")
         elif self.tags is None:
             self.tags = Tags(self.datapath('tagged'))
 
         if self.bookmarks is None:
-            if ranger.args.clean:
+            if power-ranger.args.clean:
                 bookmarkfile = None
             else:
                 bookmarkfile = self.datapath('bookmarks')
@@ -143,14 +143,14 @@ class FM(Actions,  # pylint: disable=too-many-instance-attributes
         old_preprocessing_hook = self.rifle.hook_command_preprocessing
 
         # This hook allows image viewers to open all images in the current
-        # directory, keeping the order of files the same as in ranger.
+        # directory, keeping the order of files the same as in power-ranger.
         # The requirements to use it are:
         # 1. set open_all_images to true
         # 2. ensure no files are marked
         # 3. call rifle with a command that starts with "sxiv " or "feh "
         def sxiv_workaround_hook(command):
             import re
-            from ranger.ext.shell_escape import shell_quote
+            from power-ranger.ext.shell_escape import shell_quote
 
             if self.settings.open_all_images and \
                     not self.thisdir.marked_items and \
@@ -203,7 +203,7 @@ class FM(Actions,  # pylint: disable=too-many-instance-attributes
         )
 
     def destroy(self):
-        debug = ranger.args.debug
+        debug = power-ranger.args.debug
         if self.ui:
             try:
                 self.ui.destroy()
@@ -269,7 +269,7 @@ class FM(Actions,  # pylint: disable=too-many-instance-attributes
         return self.input_blocked
 
     def copy_config_files(self, which):
-        if ranger.args.clean:
+        if power-ranger.args.clean:
             sys.stderr.write("refusing to copy config files in clean mode\n")
             return
         import shutil
@@ -281,12 +281,12 @@ class FM(Actions,  # pylint: disable=too-many-instance-attributes
             else:
                 sys.stderr.write("creating: %s\n" % self.confpath(dest))
                 try:
-                    os.makedirs(ranger.args.confdir)
+                    os.makedirs(power-ranger.args.confdir)
                 except OSError as err:
                     if err.errno != EEXIST:  # EEXIST means it already exists
                         print("This configuration directory could not be created:")
-                        print(ranger.args.confdir)
-                        print("To run ranger without the need for configuration")
+                        print(power-ranger.args.confdir)
+                        print("To run power-ranger without the need for configuration")
                         print("files, use the --clean option.")
                         raise SystemExit
                 try:
@@ -307,10 +307,10 @@ class FM(Actions,  # pylint: disable=too-many-instance-attributes
                      os.stat(self.confpath('scope.sh')).st_mode | stat.S_IXUSR)
         if which in ('all', 'rifle', 'scope', 'commands', 'commands_full', 'rc'):
             sys.stderr.write("\n> Please note that configuration files may "
-                             "change as ranger evolves.\n  It's completely up to you to "
+                             "change as power-ranger evolves.\n  It's completely up to you to "
                              "keep them up to date.\n")
             if os.environ.get('RANGER_LOAD_DEFAULT_RC', 'TRUE').upper() != 'FALSE':
-                sys.stderr.write("\n> To stop ranger from loading "
+                sys.stderr.write("\n> To stop power-ranger from loading "
                                  "\033[1mboth\033[0m the default and your custom rc.conf,\n"
                                  "  please set the environment variable "
                                  "\033[1mRANGER_LOAD_DEFAULT_RC\033[0m to "
@@ -319,26 +319,26 @@ class FM(Actions,  # pylint: disable=too-many-instance-attributes
             sys.stderr.write("Unknown config file `%s'\n" % which)
 
     def confpath(self, *paths):
-        """returns path to ranger's configuration directory"""
-        if ranger.args.clean:
+        """returns path to power-ranger's configuration directory"""
+        if power-ranger.args.clean:
             self.notify("Accessed configuration directory in clean mode", bad=True)
             return None
-        return os.path.join(ranger.args.confdir, *paths)
+        return os.path.join(power-ranger.args.confdir, *paths)
 
     def datapath(self, *paths):
-        """returns path to ranger's data directory"""
-        if ranger.args.clean:
+        """returns path to power-ranger's data directory"""
+        if power-ranger.args.clean:
             self.notify("Accessed data directory in clean mode", bad=True)
             return None
         path_compat = self.confpath(*paths)  # COMPAT
         if os.path.exists(path_compat):
             return path_compat
-        return os.path.join(ranger.args.datadir, *paths)
+        return os.path.join(power-ranger.args.datadir, *paths)
 
     @staticmethod
     def relpath(*paths):
-        """returns the path relative to rangers library directory"""
-        return os.path.join(ranger.RANGERDIR, *paths)
+        """returns the path relative to power-rangers library directory"""
+        return os.path.join(power-ranger.RANGERDIR, *paths)
 
     def get_directory(self, path, **dir_kwargs):
         """Get the directory object at the given path"""
@@ -367,7 +367,7 @@ class FM(Actions,  # pylint: disable=too-many-instance-attributes
         self.signal_garbage_collect()
 
     def loop(self):
-        """The main loop of ranger.
+        """The main loop of power-ranger.
 
         It consists of:
         1. reloading bookmarks if outdated
@@ -385,7 +385,7 @@ class FM(Actions,  # pylint: disable=too-many-instance-attributes
         loader = self.loader
         zombies = self.run.zombies
 
-        ranger.api.hook_ready(self)
+        power-ranger.api.hook_ready(self)
 
         try:  # pylint: disable=too-many-nested-blocks
             while True:
@@ -409,9 +409,9 @@ class FM(Actions,  # pylint: disable=too-many-instance-attributes
                             zombies.remove(zombie)
 
                 # gc_tick += 1
-                # if gc_tick > ranger.TICKS_BEFORE_COLLECTING_GARBAGE:
+                # if gc_tick > power-ranger.TICKS_BEFORE_COLLECTING_GARBAGE:
                     # gc_tick = 0
-                    # self.garbage_collect(ranger.TIME_BEFORE_FILE_BECOMES_GARBAGE)
+                    # self.garbage_collect(power-ranger.TIME_BEFORE_FILE_BECOMES_GARBAGE)
 
         except KeyboardInterrupt:
             # this only happens in --debug mode. By default, interrupts
@@ -420,17 +420,17 @@ class FM(Actions,  # pylint: disable=too-many-instance-attributes
 
         finally:
             self.image_displayer.quit()
-            if ranger.args.choosedir and self.thisdir and self.thisdir.path:
+            if power-ranger.args.choosedir and self.thisdir and self.thisdir.path:
                 # XXX: UnicodeEncodeError: 'utf-8' codec can't encode character
                 # '\udcf6' in position 42: surrogates not allowed
-                with open(ranger.args.choosedir, 'w') as fobj:
+                with open(power-ranger.args.choosedir, 'w') as fobj:
                     fobj.write(self.thisdir.path)
             self.bookmarks.remember(self.thisdir)
             self.bookmarks.save()
 
             # Save tabs
-            if not ranger.args.clean and self.settings.save_tabs_on_exit and len(self.tabs) > 1:
+            if not power-ranger.args.clean and self.settings.save_tabs_on_exit and len(self.tabs) > 1:
                 with open(self.datapath('tabs'), 'a') as fobj:
-                    # Don't save active tab since launching ranger changes the active tab
+                    # Don't save active tab since launching power-ranger changes the active tab
                     fobj.write('\0'.join(v.path for t, v in self.tabs.items())
                                + '\0\0')

@@ -1,4 +1,4 @@
-# This file is part of ranger, the console file manager.
+# This file is part of power-ranger, the console file manager.
 # License: GNU GPL version 3, see the file "AUTHORS" for details.
 
 """The base GUI element for views on the directory"""
@@ -6,7 +6,7 @@
 from __future__ import (absolute_import, division, print_function)
 
 import curses
-from ranger.ext.keybinding_parser import key_to_string
+from power-ranger.ext.keybinding_parser import key_to_string
 from . import Widget
 from ..displayable import DisplayableContainer
 

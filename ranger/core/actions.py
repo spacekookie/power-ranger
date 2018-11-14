@@ -1,4 +1,4 @@
-# This file is part of ranger, the console file manager.
+# This file is part of power-ranger, the console file manager.
 # License: GNU GPL version 3, see the file "AUTHORS" for details.
 
 # pylint: disable=too-many-lines,attribute-defined-outside-init
@@ -20,19 +20,19 @@ from hashlib import sha1
 from sys import version_info
 from logging import getLogger
 
-import ranger
-from ranger.ext.direction import Direction
-from ranger.ext.relative_symlink import relative_symlink
-from ranger.ext.keybinding_parser import key_to_string, construct_keybinding
-from ranger.ext.shell_escape import shell_quote
-from ranger.ext.next_available_filename import next_available_filename
-from ranger.ext.rifle import squash_flags, ASK_COMMAND
-from ranger.core.shared import FileManagerAware, SettingsAware
-from ranger.core.tab import Tab
-from ranger.container.directory import Directory
-from ranger.container.file import File
-from ranger.core.loader import CommandLoader, CopyLoader
-from ranger.container.settings import ALLOWED_SETTINGS, ALLOWED_VALUES
+import power-ranger
+from power-ranger.ext.direction import Direction
+from power-ranger.ext.relative_symlink import relative_symlink
+from power-ranger.ext.keybinding_parser import key_to_string, construct_keybinding
+from power-ranger.ext.shell_escape import shell_quote
+from power-ranger.ext.next_available_filename import next_available_filename
+from power-ranger.ext.rifle import squash_flags, ASK_COMMAND
+from power-ranger.core.shared import FileManagerAware, SettingsAware
+from power-ranger.core.tab import Tab
+from power-ranger.container.directory import Directory
+from power-ranger.container.file import File
+from power-ranger.core.loader import CommandLoader, CopyLoader
+from power-ranger.container.settings import ALLOWED_SETTINGS, ALLOWED_VALUES
 
 
 MACRO_FAIL = "<\x01\x01MACRO_HAS_NO_VALUE\x01\01>"
@@ -42,7 +42,7 @@ LOG = getLogger(__name__)
 
 class _MacroTemplate(string.Template):
     """A template for substituting macros in commands"""
-    delimiter = ranger.MACRO_DELIMITER
+    delimiter = power-ranger.MACRO_DELIMITER
     idpattern = r"[_a-z0-9]*"
 
 
@@ -168,11 +168,11 @@ class Actions(  # pylint: disable=too-many-instance-attributes,too-many-public-m
         Display the text in the statusbar.
         """
         if isinstance(obj, Exception):
-            if ranger.args.debug:
+            if power-ranger.args.debug:
                 raise obj
             exception = obj
             bad = True
-        elif bad and ranger.args.debug:
+        elif bad and power-ranger.args.debug:
             raise Exception(str(obj))
 
         text = str(obj)
@@ -199,7 +199,7 @@ class Actions(  # pylint: disable=too-many-instance-attributes,too-many-public-m
         try:
             item = self.loader.queue[0]
         except IndexError:
-            self.notify("Type Q or :quit<Enter> to exit ranger")
+            self.notify("Type Q or :quit<Enter> to exit power-ranger")
         else:
             self.notify("Aborting: " + item.get_description())
             self.loader.remove(index=0)
@@ -263,7 +263,7 @@ class Actions(  # pylint: disable=too-many-instance-attributes,too-many-public-m
                 line = self.substitute_macros(cmd.line, additional=macros,
                                               escape=cmd.escape_macros_for_shell)
             except ValueError as ex:
-                if ranger.args.debug:
+                if power-ranger.args.debug:
                     raise
                 return self.notify(ex)
             cmd.init_line(line)
@@ -271,7 +271,7 @@ class Actions(  # pylint: disable=too-many-instance-attributes,too-many-public-m
         try:
             cmd.execute()
         except Exception as ex:  # pylint: disable=broad-except
-            if ranger.args.debug:
+            if power-ranger.args.debug:
                 raise
             self.notify(ex)
         return None
@@ -299,8 +299,8 @@ class Actions(  # pylint: disable=too-many-instance-attributes,too-many-public-m
     def get_macros(self):  # pylint: disable=too-many-branches,too-many-statements
         macros = {}
 
-        macros['rangerdir'] = ranger.RANGERDIR
-        if not ranger.args.clean:
+        macros['power-rangerdir'] = power-ranger.RANGERDIR
+        if not power-ranger.args.clean:
             macros['confdir'] = self.fm.confpath()
             macros['datadir'] = self.fm.datapath()
         macros['space'] = ' '
@@ -408,14 +408,14 @@ class Actions(  # pylint: disable=too-many-instance-attributes,too-many-public-m
                 try:
                     self.execute_console(line)
                 except Exception as ex:  # pylint: disable=broad-except
-                    if ranger.args.debug:
+                    if power-ranger.args.debug:
                         raise
                     self.notify('Error in line `%s\':\n  %s' % (line, str(ex)), bad=True)
 
     def execute_file(self, files, **kw):
         """Uses the "rifle" module to open/execute a file
 
-        Arguments are the same as for ranger.ext.rifle.Rifle.execute:
+        Arguments are the same as for power-ranger.ext.rifle.Rifle.execute:
 
         files: a list of file objects (not strings!)
         number: a number to select which way to open the file, in case there
@@ -427,13 +427,13 @@ class Actions(  # pylint: disable=too-many-instance-attributes,too-many-public-m
 
         mode = kw['mode'] if 'mode' in kw else 0
 
-        # ranger can act as a file chooser when running with --choosefile=...
+        # power-ranger can act as a file chooser when running with --choosefile=...
         if mode == 0 and 'label' not in kw:
-            if ranger.args.choosefile:
-                with open(ranger.args.choosefile, 'w') as fobj:
+            if power-ranger.args.choosefile:
+                with open(power-ranger.args.choosefile, 'w') as fobj:
                     fobj.write(self.fm.thisfile.path)
 
-            if ranger.args.choosefiles:
+            if power-ranger.args.choosefiles:
                 paths = []
                 for hist in self.fm.thistab.history:
                     for fobj in hist.files:
@@ -441,10 +441,10 @@ class Actions(  # pylint: disable=too-many-instance-attributes,too-many-public-m
                             paths += [fobj.path]
                 paths += [f.path for f in self.fm.thistab.get_selection() if f.path not in paths]
 
-                with open(ranger.args.choosefiles, 'w') as fobj:
+                with open(power-ranger.args.choosefiles, 'w') as fobj:
                     fobj.write('\n'.join(paths) + '\n')
 
-            if ranger.args.choosefile or ranger.args.choosefiles:
+            if power-ranger.args.choosefile or power-ranger.args.choosefiles:
                 raise SystemExit
 
         if isinstance(files, set):
@@ -854,7 +854,7 @@ class Actions(  # pylint: disable=too-many-instance-attributes,too-many-public-m
     # --------------------------
     # -- Tags
     # --------------------------
-    # Tags are saved in ~/.config/ranger/tagged and simply mark if a
+    # Tags are saved in ~/.config/power-ranger/tagged and simply mark if a
     # file is important to you in any context.
 
     def tag_toggle(self, paths=None, value=None, movedown=None, tag=None):
@@ -891,7 +891,7 @@ class Actions(  # pylint: disable=too-many-instance-attributes,too-many-public-m
     # --------------------------
     # -- Bookmarks
     # --------------------------
-    # Using ranger.container.bookmarks.
+    # Using power-ranger.container.bookmarks.
 
     def enter_bookmark(self, key):
         """Enter the bookmark with the name <key>"""
@@ -966,12 +966,12 @@ class Actions(  # pylint: disable=too-many-instance-attributes,too-many-public-m
         pager.set_source(lines)
 
     def display_help(self):
-        manualpath = self.relpath('../doc/ranger.1')
+        manualpath = self.relpath('../doc/power-ranger.1')
         if os.path.exists(manualpath):
             process = self.run(['man', manualpath])
             if process.poll() != 16:
                 return
-        process = self.run(['man', 'ranger'])
+        process = self.run(['man', 'power-ranger'])
         if process.poll() == 16:
             self.notify("Could not find manpage.", bad=True)
 
@@ -1020,8 +1020,8 @@ class Actions(  # pylint: disable=too-many-instance-attributes,too-many-public-m
     @staticmethod
     def sha1_encode(path):
         if version_info[0] < 3:
-            return os.path.join(ranger.args.cachedir, sha1(path).hexdigest()) + '.jpg'
-        return os.path.join(ranger.args.cachedir,
+            return os.path.join(power-ranger.args.cachedir, sha1(path).hexdigest()) + '.jpg'
+        return os.path.join(power-ranger.args.cachedir,
                             sha1(path.encode('utf-8', 'backslashreplace')).hexdigest()) + '.jpg'
 
     def get_preview(self, fobj, width, height):  # pylint: disable=too-many-return-statements
@@ -1088,7 +1088,7 @@ class Actions(  # pylint: disable=too-many-instance-attributes,too-many-public-m
             data['loading'] = False
             return path
 
-        cacheimg = os.path.join(ranger.args.cachedir, self.sha1_encode(path))
+        cacheimg = os.path.join(power-ranger.args.cachedir, self.sha1_encode(path))
         if self.settings.preview_images and \
                 os.path.isfile(cacheimg) and \
                 os.path.getmtime(cacheimg) > os.path.getmtime(path):
@@ -1387,7 +1387,7 @@ class Actions(  # pylint: disable=too-many-instance-attributes,too-many-public-m
     # --------------------------
 
     def _run_pager(self, path):
-        self.run(shlex.split(os.environ.get('PAGER', ranger.DEFAULT_PAGER)) + [path])
+        self.run(shlex.split(os.environ.get('PAGER', power-ranger.DEFAULT_PAGER)) + [path])
 
     def dump_keybindings(self, *contexts):
         if not contexts:

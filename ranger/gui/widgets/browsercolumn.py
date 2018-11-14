@@ -1,4 +1,4 @@
-# This file is part of ranger, the console file manager.
+# This file is part of power-ranger, the console file manager.
 # License: GNU GPL version 3, see the file "AUTHORS" for details.
 
 """The BrowserColumn widget displays the contents of a directory or file."""
@@ -16,8 +16,8 @@ try:
 except ImportError:
     HAVE_BIDI = False
 
-from ranger.ext.widestring import WideString
-from ranger.core import linemode
+from power-ranger.ext.widestring import WideString
+from power-ranger.core import linemode
 
 from . import Widget
 from .pager import Pager

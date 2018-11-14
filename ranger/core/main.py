@@ -1,4 +1,4 @@
-# This file is part of ranger, the console file manager.
+# This file is part of power-ranger, the console file manager.
 # License: GNU GPL version 3, see the file "AUTHORS" for details.
 
 """The main function responsible to initialize the FM object and stuff."""
@@ -11,13 +11,13 @@ import os.path
 import sys
 import tempfile
 
-from ranger import VERSION
+from power-ranger import VERSION
 
 
 LOG = getLogger(__name__)
 
 VERSION_MSG = [
-    'ranger version: {0}'.format(VERSION),
+    'power-ranger version: {0}'.format(VERSION),
     'Python version: {0}'.format(' '.join(line.strip() for line in sys.version.splitlines())),
     'Locale: {0}'.format('.'.join(str(s) for s in locale.getlocale())),
 ]
@@ -28,15 +28,15 @@ def main(
         # pylint: disable=too-many-branches,too-many-statements
 ):
     """initialize objects and run the filemanager"""
-    import ranger.api
-    from ranger.container.settings import Settings
-    from ranger.core.shared import FileManagerAware, SettingsAware
-    from ranger.core.fm import FM
-    from ranger.ext.logutils import setup_logging
-    from ranger.ext.openstruct import OpenStruct
+    import power-ranger.api
+    from power-ranger.container.settings import Settings
+    from power-ranger.core.shared import FileManagerAware, SettingsAware
+    from power-ranger.core.fm import FM
+    from power-ranger.ext.logutils import setup_logging
+    from power-ranger.ext.openstruct import OpenStruct
 
-    ranger.args = args = parse_arguments()
-    ranger.arg = OpenStruct(args.__dict__)  # COMPAT
+    power-ranger.args = args = parse_arguments()
+    power-ranger.arg = OpenStruct(args.__dict__)  # COMPAT
     setup_logging(debug=args.debug, logfile=args.logfile)
 
     for line in VERSION_MSG:
@@ -48,7 +48,7 @@ def main(
     except locale.Error:
         print("Warning: Unable to set locale.  Expect encoding problems.")
 
-    # so that programs can know that ranger spawned them:
+    # so that programs can know that power-ranger spawned them:
     level = 'RANGER_LEVEL'
     if level in os.environ and os.environ[level].isdigit():
         os.environ[level] = str(int(os.environ[level]) + 1)
@@ -118,11 +118,11 @@ def main(
         load_settings(fm, args.clean)
 
         if args.show_only_dirs:
-            from ranger.container.directory import InodeFilterConstants
+            from power-ranger.container.directory import InodeFilterConstants
             fm.settings.global_inode_type_filter = InodeFilterConstants.DIRS
 
         if args.list_unused_keys:
-            from ranger.ext.keybinding_parser import (special_keys,
+            from power-ranger.ext.keybinding_parser import (special_keys,
                                                       reversed_special_keys)
             maps = fm.ui.keymaps['browser']
             for key in sorted(special_keys.values(), key=str):
@@ -134,7 +134,7 @@ def main(
             return 0
 
         if not sys.stdin.isatty():
-            sys.stderr.write("Error: Must run ranger from terminal\n")
+            sys.stderr.write("Error: Must run power-ranger from terminal\n")
             raise SystemExit(1)
 
         if fm.username == 'root':
@@ -142,7 +142,7 @@ def main(
             fm.settings.use_preview_script = False
             LOG.info("Running as root, disabling the file previews.")
         if not args.debug:
-            from ranger.ext import curses_interrupt_handler
+            from power-ranger.ext import curses_interrupt_handler
             curses_interrupt_handler.install_interrupt_handler()
 
         # Create cache directory
@@ -173,7 +173,7 @@ def main(
 
         # Run the file manager
         fm.initialize()
-        ranger.api.hook_init(fm)
+        power-ranger.api.hook_init(fm)
         fm.ui.initialize()
 
         if args.selectfile:
@@ -184,12 +184,12 @@ def main(
             for command in args.cmd:
                 fm.execute_console(command)
 
-        if ranger.args.profile:
+        if power-ranger.args.profile:
             import cProfile
             import pstats
-            ranger.__fm = fm  # pylint: disable=protected-access
-            profile_file = tempfile.gettempdir() + '/ranger_profile'
-            cProfile.run('ranger.__fm.loop()', profile_file)
+            power-ranger.__fm = fm  # pylint: disable=protected-access
+            profile_file = tempfile.gettempdir() + '/power-ranger_profile'
+            cProfile.run('power-ranger.__fm.loop()', profile_file)
             profile = pstats.Stats(profile_file, stream=sys.stderr)
         else:
             fm.loop()
@@ -204,8 +204,8 @@ def main(
             pass
         exit_msg += '''
 {0}
-ranger crashed. Please report this traceback at:
-https://github.com/ranger/ranger/issues
+power-ranger crashed. Please report this traceback at:
+https://github.com/power-ranger/power-ranger/issues
 '''.format(ex_traceback)
 
         exit_code = 1
@@ -226,7 +226,7 @@ https://github.com/ranger/ranger/issues
         except (AttributeError, NameError):
             pass
         # If profiler is enabled print the stats
-        if ranger.args.profile and profile:
+        if power-ranger.args.profile and profile:
             profile.strip_dirs().sort_stats('cumulative').print_callees()
         # print the exit message if any
         if exit_msg:
@@ -255,14 +255,14 @@ def __get_home_directory():
 def xdg_path(env_var):
     path = os.environ.get(env_var)
     if path and os.path.isabs(path):
-        return os.path.join(path, 'ranger')
+        return os.path.join(path, 'power-ranger')
     return None
 
 
 def parse_arguments():
     """Parse the program arguments"""
     from optparse import OptionParser  # pylint: disable=deprecated-module
-    from ranger import CONFDIR, CACHEDIR, DATADIR, USAGE
+    from power-ranger import CONFDIR, CACHEDIR, DATADIR, USAGE
 
     parser = OptionParser(usage=USAGE, version=('\n'.join(VERSION_MSG)))
 
@@ -285,18 +285,18 @@ def parse_arguments():
                       help="copy the default configs to the local config directory. "
                       "Possible values: all, rc, rifle, commands, commands_full, scope")
     parser.add_option('--choosefile', type='string', metavar='OUTFILE',
-                      help="Makes ranger act like a file chooser. When opening "
+                      help="Makes power-ranger act like a file chooser. When opening "
                       "a file, it will quit and write the name of the selected "
                       "file to OUTFILE.")
     parser.add_option('--choosefiles', type='string', metavar='OUTFILE',
-                      help="Makes ranger act like a file chooser for multiple files "
+                      help="Makes power-ranger act like a file chooser for multiple files "
                       "at once. When opening a file, it will quit and write the name "
                       "of all selected files to OUTFILE.")
     parser.add_option('--choosedir', type='string', metavar='OUTFILE',
-                      help="Makes ranger act like a directory chooser. When ranger quits"
+                      help="Makes power-ranger act like a directory chooser. When power-ranger quits"
                       ", it will write the name of the last visited directory to OUTFILE")
     parser.add_option('--selectfile', type='string', metavar='filepath',
-                      help="Open ranger with supplied file selected.")
+                      help="Open power-ranger with supplied file selected.")
     parser.add_option('--show-only-dirs', action='store_true',
                       help="Show only directories, no files or links")
     parser.add_option('--list-unused-keys', action='store_true',
@@ -344,22 +344,22 @@ COMMANDS_EXCLUDE = ['settings', 'notify']
 
 def load_settings(  # pylint: disable=too-many-locals,too-many-branches,too-many-statements
         fm, clean):
-    from ranger.core.actions import Actions
-    import ranger.core.shared
-    import ranger.api.commands
-    from ranger.config import commands as commands_default
+    from power-ranger.core.actions import Actions
+    import power-ranger.core.shared
+    import power-ranger.api.commands
+    from power-ranger.config import commands as commands_default
 
     # Load default commands
-    fm.commands = ranger.api.commands.CommandContainer()
+    fm.commands = power-ranger.api.commands.CommandContainer()
     include = [name for name in dir(Actions) if name not in COMMANDS_EXCLUDE]
     fm.commands.load_commands_from_object(fm, include)
     fm.commands.load_commands_from_module(commands_default)
 
     if not clean:
-        system_confdir = os.path.join(os.sep, 'etc', 'ranger')
+        system_confdir = os.path.join(os.sep, 'etc', 'power-ranger')
         if os.path.exists(system_confdir):
             sys.path.append(system_confdir)
-        allow_access_to_confdir(ranger.args.confdir, True)
+        allow_access_to_confdir(power-ranger.args.confdir, True)
 
         # Load custom commands
         def import_file(name, path):  # From https://stackoverflow.com/a/67692
@@ -414,7 +414,7 @@ def load_settings(  # pylint: disable=too-many-locals,too-many-branches,too-many
                 fobj = open(fm.confpath('plugins', '__init__.py'), 'w')
                 fobj.close()
 
-            ranger.fm = fm
+            power-ranger.fm = fm
             for plugin in sorted(plugins):
                 try:
                     try:
@@ -433,9 +433,9 @@ def load_settings(  # pylint: disable=too-many-locals,too-many-branches,too-many
                     LOG.error(ex_msg)
                     LOG.exception(ex)
                     fm.notify(ex_msg, bad=True)
-            ranger.fm = None
+            power-ranger.fm = None
 
-        allow_access_to_confdir(ranger.args.confdir, False)
+        allow_access_to_confdir(power-ranger.args.confdir, False)
         # Load rc.conf
         custom_conf = fm.confpath('rc.conf')
         system_conf = os.path.join(system_confdir, 'rc.conf')
@@ -465,7 +465,7 @@ def allow_access_to_confdir(confdir, allow):
             if err.errno != EEXIST:  # EEXIST means it already exists
                 print("This configuration directory could not be created:")
                 print(confdir)
-                print("To run ranger without the need for configuration")
+                print("To run power-ranger without the need for configuration")
                 print("files, use the --clean option.")
                 raise SystemExit
         else:

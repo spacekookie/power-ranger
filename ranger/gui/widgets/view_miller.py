@@ -1,4 +1,4 @@
-# This file is part of ranger, the console file manager.
+# This file is part of power-ranger, the console file manager.
 # License: GNU GPL version 3, see the file "AUTHORS" for details.
 
 """ViewMiller arranges the view in miller columns"""
@@ -6,8 +6,8 @@
 from __future__ import (absolute_import, division, print_function)
 
 import curses
-from ranger.container import settings
-from ranger.gui.widgets.view_base import ViewBase
+from power-ranger.container import settings
+from power-ranger.gui.widgets.view_base import ViewBase
 
 from .browsercolumn import BrowserColumn
 from .pager import Pager

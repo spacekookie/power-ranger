@@ -1,4 +1,4 @@
-# This file is part of ranger, the console file manager.
+# This file is part of power-ranger, the console file manager.
 # License: GNU GPL version 3, see the file "AUTHORS" for details.
 
 """The titlebar is the widget at the top, giving you broad overview.
@@ -10,7 +10,7 @@ from __future__ import (absolute_import, division, print_function)
 
 from os.path import basename
 
-from ranger.gui.bar import Bar
+from power-ranger.gui.bar import Bar
 
 from . import Widget
 

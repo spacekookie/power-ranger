@@ -2,7 +2,7 @@
 #
 #  MIME-TYPES and the extensions that represent them
 #
-#  This file contains additional mimetypes which I think ranger should have
+#  This file contains additional mimetypes which I think power-ranger should have
 #  by default.  You can also use ~/.mime.types to add own types.
 #
 #  Mimetypes are used for colorschemes and the builtin filetype detection

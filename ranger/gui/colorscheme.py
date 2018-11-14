@@ -1,4 +1,4 @@
-# This file is part of ranger, the console file manager.
+# This file is part of power-ranger, the console file manager.
 # License: GNU GPL version 3, see the file "AUTHORS" for details.
 
 """Colorschemes define colors for specific contexts.
@@ -6,21 +6,21 @@
 Generally, this works by passing a set of keywords (strings) to
 the colorscheme.get() method to receive the tuple (fg, bg, attr).
 fg, bg are the foreground and background colors and attr is the attribute.
-The values are specified in ranger.gui.color.
+The values are specified in power-ranger.gui.color.
 
 A colorscheme must...
 
 1. be inside either of these directories:
-~/.config/ranger/colorschemes/
-path/to/ranger/colorschemes/
+~/.config/power-ranger/colorschemes/
+path/to/power-ranger/colorschemes/
 
-2. be a subclass of ranger.gui.colorscheme.ColorScheme
+2. be a subclass of power-ranger.gui.colorscheme.ColorScheme
 
 3. implement a use(self, context) method which returns (fg, bg, attr).
 context is a struct which contains all entries of CONTEXT_KEYS,
 associated with either True or False.
 
-Define which colorscheme in your settings (e.g. ~/.config/ranger/rc.conf):
+Define which colorscheme in your settings (e.g. ~/.config/power-ranger/rc.conf):
 set colorscheme yourschemename
 """
 
@@ -29,12 +29,12 @@ from __future__ import (absolute_import, division, print_function)
 import os.path
 from curses import color_pair
 
-import ranger
-from ranger.gui.color import get_color
-from ranger.gui.context import Context
-from ranger.core.main import allow_access_to_confdir
-from ranger.ext.cached_function import cached_function
-from ranger.ext.iter_tools import flatten
+import power-ranger
+from power-ranger.gui.color import get_color
+from power-ranger.gui.context import Context
+from power-ranger.core.main import allow_access_to_confdir
+from power-ranger.ext.cached_function import cached_function
+from power-ranger.ext.iter_tools import flatten
 
 
 class ColorSchemeError(Exception):
@@ -81,7 +81,7 @@ class ColorScheme(object):
 
 
 def _colorscheme_name_to_class(signal):  # pylint: disable=too-many-branches
-    # Find the colorscheme.  First look in ~/.config/ranger/colorschemes,
+    # Find the colorscheme.  First look in ~/.config/power-ranger/colorschemes,
     # then at RANGERDIR/colorschemes.  If the file contains a class
     # named Scheme, it is used.  Otherwise, an arbitrary other class
     # is picked.
@@ -92,7 +92,7 @@ def _colorscheme_name_to_class(signal):  # pylint: disable=too-many-branches
         signal.value = 'default'
 
     scheme_name = signal.value
-    usecustom = not ranger.args.clean
+    usecustom = not power-ranger.args.clean
 
     def exists(colorscheme):
         return os.path.exists(colorscheme + '.py') or os.path.exists(colorscheme + '.pyc')
@@ -103,7 +103,7 @@ def _colorscheme_name_to_class(signal):  # pylint: disable=too-many-branches
         except TypeError:
             return False
 
-    # create ~/.config/ranger/colorschemes/__init__.py if it doesn't exist
+    # create ~/.config/power-ranger/colorschemes/__init__.py if it doesn't exist
     if usecustom:
         if os.path.exists(signal.fm.confpath('colorschemes')):
             initpy = signal.fm.confpath('colorschemes', '__init__.py')
@@ -114,7 +114,7 @@ def _colorscheme_name_to_class(signal):  # pylint: disable=too-many-branches
             exists(signal.fm.confpath('colorschemes', scheme_name)):
         scheme_supermodule = 'colorschemes'
     elif exists(signal.fm.relpath('colorschemes', scheme_name)):
-        scheme_supermodule = 'ranger.colorschemes'
+        scheme_supermodule = 'power-ranger.colorschemes'
         usecustom = False
     else:
         scheme_supermodule = None  # found no matching file.
@@ -127,11 +127,11 @@ def _colorscheme_name_to_class(signal):  # pylint: disable=too-many-branches
         raise ColorSchemeError("Cannot locate colorscheme `%s'" % scheme_name)
     else:
         if usecustom:
-            allow_access_to_confdir(ranger.args.confdir, True)
+            allow_access_to_confdir(power-ranger.args.confdir, True)
         scheme_module = getattr(
             __import__(scheme_supermodule, globals(), locals(), [scheme_name], 0), scheme_name)
         if usecustom:
-            allow_access_to_confdir(ranger.args.confdir, False)
+            allow_access_to_confdir(power-ranger.args.confdir, False)
         if hasattr(scheme_module, 'Scheme') and is_scheme(scheme_module.Scheme):
             signal.value = scheme_module.Scheme()
         else:
@@ -145,11 +145,11 @@ def _colorscheme_name_to_class(signal):  # pylint: disable=too-many-branches
 
 def get_all_colorschemes(fm):
     colorschemes = set()
-    # Load colorscheme names from main ranger/colorschemes dir
-    for item in os.listdir(os.path.join(ranger.RANGERDIR, 'colorschemes')):
+    # Load colorscheme names from main power-ranger/colorschemes dir
+    for item in os.listdir(os.path.join(power-ranger.RANGERDIR, 'colorschemes')):
         if not item.startswith('__'):
             colorschemes.add(item.rsplit('.', 1)[0])
-    # Load colorscheme names from ~/.config/ranger/colorschemes if dir exists
+    # Load colorscheme names from ~/.config/power-ranger/colorschemes if dir exists
     confpath = fm.confpath('colorschemes')
     if os.path.isdir(confpath):
         for item in os.listdir(confpath):

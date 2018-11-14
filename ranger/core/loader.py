@@ -1,4 +1,4 @@
-# This file is part of ranger, the console file manager.
+# This file is part of power-ranger, the console file manager.
 # License: GNU GPL version 3, see the file "AUTHORS" for details.
 
 from __future__ import (absolute_import, division, print_function)
@@ -18,9 +18,9 @@ try:
 except ImportError:
     HAVE_CHARDET = False
 
-from ranger.core.shared import FileManagerAware
-from ranger.ext.signals import SignalDispatcher
-from ranger.ext.human_readable import human_readable
+from power-ranger.core.shared import FileManagerAware
+from power-ranger.ext.signals import SignalDispatcher
+from power-ranger.ext.human_readable import human_readable
 
 
 class Loadable(object):
@@ -84,7 +84,7 @@ class CopyLoader(Loadable, FileManagerAware):  # pylint: disable=too-many-instan
         if not self.copy_buffer:
             return
 
-        from ranger.ext import shutil_generatorized as shutil_g
+        from power-ranger.ext import shutil_generatorized as shutil_g
         # TODO: Don't calculate size when renaming (needs detection)
         bytes_per_tick = shutil_g.BLOCK_SIZE
         size = max(1, self._calculate_size(bytes_per_tick))
@@ -145,7 +145,7 @@ class CommandLoader(  # pylint: disable=too-many-instance-attributes
 
     Output from stderr will be reported.  Ensure that the process doesn't
     ever ask for input, otherwise the loader will be blocked until this
-    object is removed from the queue (type ^C in ranger)
+    object is removed from the queue (type ^C in power-ranger)
     """
     finished = False
     process = None

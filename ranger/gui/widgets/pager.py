@@ -1,4 +1,4 @@
-# This file is part of ranger, the console file manager.
+# This file is part of power-ranger, the console file manager.
 # License: GNU GPL version 3, see the file "AUTHORS" for details.
 
 """The pager displays text and allows you to scroll inside it."""
@@ -8,9 +8,9 @@ from __future__ import (absolute_import, division, print_function)
 import curses
 import logging
 
-from ranger.gui import ansi
-from ranger.ext.direction import Direction
-from ranger.ext.img_display import ImgDisplayUnsupportedException
+from power-ranger.gui import ansi
+from power-ranger.ext.direction import Direction
+from power-ranger.ext.img_display import ImgDisplayUnsupportedException
 
 from . import Widget
 

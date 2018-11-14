@@ -1,10 +1,10 @@
-# This file is part of ranger, the console file manager.
+# This file is part of power-ranger, the console file manager.
 # License: GNU GPL version 3, see the file "AUTHORS" for details.
 
 from __future__ import (absolute_import, division, print_function)
 
-from ranger.gui.colorscheme import ColorScheme
-from ranger.gui.color import default_colors, reverse, bold, BRIGHT
+from power-ranger.gui.colorscheme import ColorScheme
+from power-ranger.gui.color import default_colors, reverse, bold, BRIGHT
 
 
 class Snow(ColorScheme):

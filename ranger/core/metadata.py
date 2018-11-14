@@ -1,4 +1,4 @@
-# This file is part of ranger, the console file manager.
+# This file is part of power-ranger, the console file manager.
 # License: GNU GPL version 3, see the file "AUTHORS" for details.
 
 """
@@ -15,7 +15,7 @@ from __future__ import (absolute_import, division, print_function)
 
 import copy
 from os.path import join, dirname, exists, basename
-from ranger.ext.openstruct import DefaultOpenStruct as ostruct
+from power-ranger.ext.openstruct import DefaultOpenStruct as ostruct
 
 
 METADATA_FILE_NAME = ".metadata.json"

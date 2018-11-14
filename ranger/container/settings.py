@@ -1,4 +1,4 @@
-# This file is part of ranger, the console file manager.
+# This file is part of power-ranger, the console file manager.
 # License: GNU GPL version 3, see the file "AUTHORS" for details.
 
 from __future__ import (absolute_import, division, print_function)
@@ -7,10 +7,10 @@ import re
 import os.path
 from inspect import isfunction
 
-import ranger
-from ranger.ext.signals import SignalDispatcher
-from ranger.core.shared import FileManagerAware
-from ranger.gui.colorscheme import _colorscheme_name_to_class
+import power-ranger
+from power-ranger.ext.signals import SignalDispatcher
+from power-ranger.core.shared import FileManagerAware
+from power-ranger.gui.colorscheme import _colorscheme_name_to_class
 
 # Use these priority constants to trigger events at specific points in time
 # during processing of the signals "setopt" and "setopt.<some_setting_name>"
@@ -190,7 +190,7 @@ class Settings(SignalDispatcher, FileManagerAware):
 
     def _get_default(self, name):
         if name == 'preview_script':
-            if ranger.args.clean:
+            if power-ranger.args.clean:
                 value = self.fm.relpath('data/scope.sh')
             else:
                 value = self.fm.confpath('scope.sh')

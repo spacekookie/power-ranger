@@ -1,11 +1,11 @@
-# This file is part of ranger, the console file manager.
+# This file is part of power-ranger, the console file manager.
 # License: GNU GPL version 3, see the file "AUTHORS" for details.
 
 from __future__ import (absolute_import, division, print_function)
 
 import sys
 
-from ranger.ext.widestring import WideString, utf_char_width
+from power-ranger.ext.widestring import WideString, utf_char_width
 
 
 PY3 = sys.version_info[0] >= 3

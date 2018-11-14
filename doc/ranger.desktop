@@ -1,9 +1,9 @@
 [Desktop Entry]
 Type=Application
-Name=ranger
-Comment=Launches the ranger file manager
+Name=power-ranger
+Comment=Launches the power-ranger file manager
 Icon=utilities-terminal
 Terminal=true
-Exec=ranger
+Exec=power-ranger
 Categories=ConsoleOnly;System;FileTools;FileManager
 MimeType=inode/directory;

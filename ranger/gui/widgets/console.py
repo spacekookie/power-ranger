@@ -1,4 +1,4 @@
-# This file is part of ranger, the console file manager.
+# This file is part of power-ranger, the console file manager.
 # License: GNU GPL version 3, see the file "AUTHORS" for details.
 
 """The Console widget implements a vim-like console"""
@@ -10,11 +10,11 @@ import os
 import re
 from collections import deque
 
-from ranger.gui.widgets import Widget
-from ranger.ext.direction import Direction
-from ranger.ext.widestring import uwid, WideString
-from ranger.container.history import History, HistoryEmptyException
-import ranger
+from power-ranger.gui.widgets import Widget
+from power-ranger.ext.direction import Direction
+from power-ranger.ext.widestring import uwid, WideString
+from power-ranger.container.history import History, HistoryEmptyException
+import power-ranger
 
 
 class Console(Widget):  # pylint: disable=too-many-instance-attributes,too-many-public-methods
@@ -39,7 +39,7 @@ class Console(Widget):  # pylint: disable=too-many-instance-attributes,too-many-
         self.line = ''
         self.history = History(self.settings.max_console_history_size)
         # load history from files
-        if not ranger.args.clean:
+        if not power-ranger.args.clean:
             self.historypath = self.fm.datapath('history')
             if os.path.exists(self.historypath):
                 try:
@@ -71,7 +71,7 @@ class Console(Widget):  # pylint: disable=too-many-instance-attributes,too-many-
 
     def destroy(self):
         # save history to files
-        if ranger.args.clean or not self.settings.save_console_history:
+        if power-ranger.args.clean or not self.settings.save_console_history:
             return
         if self.historypath:
             try:
@@ -320,7 +320,7 @@ class Console(Widget):  # pylint: disable=too-many-instance-attributes,too-many-
         >>> import sys
         >>> if sys.version_info < (3, ):
         ...     # Didn't get the unicode test to work on python2, even though
-        ...     # it works fine in ranger, even with unicode input...
+        ...     # it works fine in power-ranger, even with unicode input...
         ...     line = "ohai world,  this is dog"
         ... else:
         ...     line = "\\u30AA\\u30CF\\u30E8\\u30A6 world,  this is dog"

@@ -5,7 +5,7 @@ import time
 
 import pytest
 
-from ranger.container.bookmarks import Bookmarks
+from power-ranger.container.bookmarks import Bookmarks
 
 
 def testbookmarks(tmpdir):

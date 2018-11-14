@@ -1,4 +1,4 @@
-# This file is part of ranger, the console file manager.
+# This file is part of power-ranger, the console file manager.
 # License: GNU GPL version 3, see the file "AUTHORS" for details.
 
 """This module is an abstract layer over subprocess.Popen
@@ -28,8 +28,8 @@ import logging
 import os
 import sys
 from subprocess import Popen, PIPE, STDOUT
-from ranger.ext.get_executables import get_executables, get_term
-from ranger.ext.popen_forked import Popen_forked
+from power-ranger.ext.get_executables import get_executables, get_term
+from power-ranger.ext.popen_forked import Popen_forked
 
 
 LOG = logging.getLogger(__name__)

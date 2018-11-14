@@ -1,12 +1,12 @@
-# This file is part of ranger, the console file manager.
+# This file is part of power-ranger, the console file manager.
 # License: GNU GPL version 3, see the file "AUTHORS" for details.
 
 from __future__ import (absolute_import, division, print_function)
 
 import curses
 
-from ranger.core.shared import FileManagerAware
-from ranger.gui.curses_shortcuts import CursesShortcuts
+from power-ranger.core.shared import FileManagerAware
+from power-ranger.gui.curses_shortcuts import CursesShortcuts
 
 
 class Displayable(  # pylint: disable=too-many-instance-attributes
@@ -47,7 +47,7 @@ class Displayable(  # pylint: disable=too-many-instance-attributes
 
     def __init__(self, win,  # pylint: disable=super-init-not-called
                  env=None, fm=None, settings=None):
-        from ranger.gui.ui import UI
+        from power-ranger.gui.ui import UI
 
         if env is not None:
             self.env = env

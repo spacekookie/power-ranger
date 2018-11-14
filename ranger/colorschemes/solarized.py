@@ -1,4 +1,4 @@
-# This file is part of ranger, the console file manager.
+# This file is part of power-ranger, the console file manager.
 # License: GNU GPL version 3, see the file "AUTHORS" for details.
 # Author: Joseph Tannhuber <sepp.tannhuber@yahoo.de>, 2013
 # Solarized like colorscheme, similar to solarized-dircolors
@@ -7,8 +7,8 @@
 
 from __future__ import (absolute_import, division, print_function)
 
-from ranger.gui.colorscheme import ColorScheme
-from ranger.gui.color import (
+from power-ranger.gui.colorscheme import ColorScheme
+from power-ranger.gui.color import (
     cyan, magenta, red, white, default,
     normal, bold, reverse,
     default_colors,

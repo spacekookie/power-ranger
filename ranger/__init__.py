@@ -1,10 +1,10 @@
-# This file is part of ranger, the console file manager.
+# This file is part of power-ranger, the console file manager.
 # License: GNU GPL version 3, see the file "AUTHORS" for details.
 
 """A console file manager with VI key bindings.
 
 It provides a minimalistic and nice curses interface with a view on the
-directory hierarchy.  The secondary task of ranger is to figure out which
+directory hierarchy.  The secondary task of power-ranger is to figure out which
 program you want to use to open your files with.
 """
 
@@ -16,10 +16,10 @@ import os
 # Version helper
 def version_helper():
     if __release__:
-        version_string = 'ranger {0}'.format(__version__)
+        version_string = 'power-ranger {0}'.format(__version__)
     else:
         import subprocess
-        version_string = 'ranger-master {0}'
+        version_string = 'power-ranger-master {0}'
         try:
             git_describe = subprocess.check_output(['git', 'describe'],
                                                    universal_newlines=True,
@@ -50,10 +50,10 @@ VERSION = version_helper()
 
 # These variables are ignored if the corresponding
 # XDG environment variable is non-empty and absolute
-CACHEDIR = os.path.expanduser('~/.cache/ranger')
-CONFDIR = os.path.expanduser('~/.config/ranger')
-DATADIR = os.path.expanduser('~/.local/share/ranger')
+CACHEDIR = os.path.expanduser('~/.cache/power-ranger')
+CONFDIR = os.path.expanduser('~/.config/power-ranger')
+DATADIR = os.path.expanduser('~/.local/share/power-ranger')
 
 args = None  # pylint: disable=invalid-name
 
-from ranger.core.main import main  # NOQA pylint: disable=wrong-import-position
+from power-ranger.core.main import main  # NOQA pylint: disable=wrong-import-position

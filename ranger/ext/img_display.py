@@ -1,4 +1,4 @@
-# This file is part of ranger, the console file manager.
+# This file is part of power-ranger, the console file manager.
 # License: GNU GPL version 3, see the file "AUTHORS" for details.
 # Author: Emanuel Guevel, 2013
 # Author: Delisa Mason, 2015
@@ -29,7 +29,7 @@ from contextlib import contextmanager
 import codecs
 from tempfile import NamedTemporaryFile
 
-from ranger.core.shared import FileManagerAware
+from power-ranger.core.shared import FileManagerAware
 
 W3MIMGDISPLAY_ENV = "W3MIMGDISPLAY_PATH"
 W3MIMGDISPLAY_OPTIONS = []
@@ -237,8 +237,8 @@ class W3MImageDisplayer(ImageDisplayer, FileManagerAware):
         if self.is_initialized and self.process and self.process.poll() is None:
             self.process.kill()
 
-# TODO: remove FileManagerAwareness, as stuff in ranger.ext should be
-# ranger-independent libraries.
+# TODO: remove FileManagerAwareness, as stuff in power-ranger.ext should be
+# power-ranger-independent libraries.
 
 
 class ITerm2ImageDisplayer(ImageDisplayer, FileManagerAware):
@@ -514,7 +514,7 @@ class KittyImageDisplayer(ImageDisplayer):
     def __init__(self):
         # the rest of the initializations that require reading stdio or raising exceptions
         # are delayed to the first draw call, since curses
-        # and ranger exception handler are not online at __init__() time
+        # and power-ranger exception handler are not online at __init__() time
         self.needs_late_init = True
         # to init in _late_init()
         self.backend = None
@@ -524,7 +524,7 @@ class KittyImageDisplayer(ImageDisplayer):
     def _late_init(self):
         # tmux
         if 'kitty' not in os.environ['TERM']:
-            # this doesn't seem to work, ranger freezes...
+            # this doesn't seem to work, power-ranger freezes...
             # commenting out the response check does nothing
             # self.protocol_start = b'\033Ptmux;\033' + self.protocol_start
             # self.protocol_end += b'\033\\'
@@ -622,7 +622,7 @@ class KittyImageDisplayer(ImageDisplayer):
             #       the only format except raw RGB(A) bitmap that kitty understand)
             # c, r: size in cells of the viewbox
             cmds.update({'t': 't', 'f': 100, })
-            with NamedTemporaryFile(prefix='ranger_thumb_', suffix='.png', delete=False) as tmpf:
+            with NamedTemporaryFile(prefix='power-ranger_thumb_', suffix='.png', delete=False) as tmpf:
                 image.save(tmpf, format='png', compress_level=0)
                 payload = base64.standard_b64encode(tmpf.name.encode(self.fsenc))
 
@@ -639,7 +639,7 @@ class KittyImageDisplayer(ImageDisplayer):
             raise ImageDisplayError('kitty replied "{}"'.format(resp))
 
     def clear(self, start_x, start_y, width, height):
-        # let's assume that every time ranger call this
+        # let's assume that every time power-ranger call this
         # it actually wants just to remove the previous image
         # TODO: implement this using the actual x, y, since the protocol supports it
         cmds = {'a': 'd', 'i': self.image_id}

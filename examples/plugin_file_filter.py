@@ -1,4 +1,4 @@
-# Compatible since ranger 1.7.0 (git commit c82a8a76989c)
+# Compatible since power-ranger 1.7.0 (git commit c82a8a76989c)
 #
 # This plugin hides the directories "/boot", "/sbin", "/proc" and "/sys" unless
 # the "show_hidden" option is activated.
@@ -7,10 +7,10 @@
 
 from __future__ import (absolute_import, division, print_function)
 
-import ranger.container.directory
+import power-ranger.container.directory
 
 
-ACCEPT_FILE_OLD = ranger.container.directory.accept_file
+ACCEPT_FILE_OLD = power-ranger.container.directory.accept_file
 
 HIDE_FILES = ("/boot", "/sbin", "/proc", "/sys")
 
@@ -23,4 +23,4 @@ def custom_accept_file(fobj, filters):
 
 
 # Overwrite the old function
-ranger.container.directory.accept_file = custom_accept_file
+power-ranger.container.directory.accept_file = custom_accept_file

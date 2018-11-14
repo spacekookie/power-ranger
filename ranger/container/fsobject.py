@@ -1,4 +1,4 @@
-# This file is part of ranger, the console file manager.
+# This file is part of power-ranger, the console file manager.
 # License: GNU GPL version 3, see the file "AUTHORS" for details.
 
 from __future__ import (absolute_import, division, print_function)
@@ -10,15 +10,15 @@ from os.path import abspath, basename, dirname, realpath, relpath, splitext
 from pwd import getpwuid
 from time import time
 
-from ranger.core.linemode import (
+from power-ranger.core.linemode import (
     DEFAULT_LINEMODE, DefaultLinemode, TitleLinemode,
     PermissionsLinemode, FileInfoLinemode, MtimeLinemode, SizeMtimeLinemode,
 )
-from ranger.core.shared import FileManagerAware, SettingsAware
-from ranger.ext.shell_escape import shell_escape
-from ranger.ext import spawn
-from ranger.ext.lazy_property import lazy_property
-from ranger.ext.human_readable import human_readable
+from power-ranger.core.shared import FileManagerAware, SettingsAware
+from power-ranger.ext.shell_escape import shell_escape
+from power-ranger.ext import spawn
+from power-ranger.ext.lazy_property import lazy_property
+from power-ranger.ext.human_readable import human_readable
 
 # Python 2 compatibility
 try:

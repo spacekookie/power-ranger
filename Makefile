@@ -1,7 +1,7 @@
-# This file is part of ranger, the console file manager.
+# This file is part of power-ranger, the console file manager.
 # License: GNU GPL version 3, see the file "AUTHORS" for details.
 
-NAME = ranger
+NAME = power-ranger
 VERSION = $(shell grep -m 1 -o '[0-9][0-9.]\+\S*' README.md)
 NAME_RIFLE = rifle
 VERSION_RIFLE = $(VERSION)
@@ -37,7 +37,7 @@ options: help
 	@echo 'DESTDIR = $(DESTDIR)'
 
 help:
-	@echo 'make:              Test and compile ranger.'
+	@echo 'make:              Test and compile power-ranger.'
 	@echo 'make install:      Install $(NAME)'
 	@echo 'make pypi_sdist:   Release a new sdist to PyPI'
 	@echo 'make clean:        Remove the compiled files (*.pyc, *.pyo)'
@@ -58,11 +58,11 @@ install:
 		'--root=$(DESTDIR)' --optimize=$(PYOPTIMIZE)
 
 compile: clean
-	PYTHONOPTIMIZE=$(PYOPTIMIZE) $(PYTHON) -m compileall -q ranger
+	PYTHONOPTIMIZE=$(PYOPTIMIZE) $(PYTHON) -m compileall -q power-ranger
 
 clean:
-	find ranger -regex .\*\.py[co]\$$ -delete
-	find ranger -depth -name __pycache__ -type d -exec rm -r -- {} \;
+	find power-ranger -regex .\*\.py[co]\$$ -delete
+	find power-ranger -depth -name __pycache__ -type d -exec rm -r -- {} \;
 
 doc: cleandoc
 	mkdir -p $(DOCDIR)
@@ -73,17 +73,17 @@ doc: cleandoc
 	find . -name \*.html -exec sed -i 's|'"$(CWD)"'|../..|g' -- {} \;
 
 TEST_PATHS_MAIN = \
-	$(shell find ./ranger -mindepth 1 -maxdepth 1 -type d \
+	$(shell find ./power-ranger -mindepth 1 -maxdepth 1 -type d \
 		! -name '__pycache__' \
-		! -path './ranger/config' \
-		! -path './ranger/data' \
+		! -path './power-ranger/config' \
+		! -path './power-ranger/data' \
 	) \
-	./ranger/__init__.py \
+	./power-ranger/__init__.py \
 	$(shell find ./doc/tools ./examples -type f -name '*.py') \
-	./ranger.py \
+	./power-ranger.py \
 	./setup.py \
 	./tests
-TEST_PATH_CONFIG = ./ranger/config
+TEST_PATH_CONFIG = ./power-ranger/config
 
 test_pylint:
 	@echo "Running pylint..."
@@ -96,7 +96,7 @@ test_flake8:
 
 test_doctest:
 	@echo "Running doctests..."
-	@for FILE in $(shell grep -IHm 1 doctest -r ranger | grep $(FILTER) | cut -d: -f1); do \
+	@for FILE in $(shell grep -IHm 1 doctest -r power-ranger | grep $(FILTER) | cut -d: -f1); do \
 		echo "Testing $$FILE..."; \
 		RANGER_DOCTEST=1 PYTHONPATH=".:"$$PYTHONPATH ${PYTHON} $$FILE; \
 	done
@@ -113,13 +113,13 @@ test: test_pylint test_flake8 test_doctest test_pytest test_other
 	@echo "Finished testing: All tests passed!"
 
 man:
-	pod2man --stderr --center='ranger manual' --date='$(NAME)-$(VERSION)' \
-		--release=$(shell date +%x) doc/ranger.pod doc/ranger.1
+	pod2man --stderr --center='power-ranger manual' --date='$(NAME)-$(VERSION)' \
+		--release=$(shell date +%x) doc/power-ranger.pod doc/power-ranger.1
 	pod2man --stderr --center='rifle manual' --date='$(NAME_RIFLE)-$(VERSION_RIFLE)' \
 		--release=$(shell date +%x) doc/rifle.pod doc/rifle.1
 
 manhtml:
-	pod2html doc/ranger.pod --outfile=doc/ranger.1.html
+	pod2html doc/power-ranger.pod --outfile=doc/power-ranger.1.html
 
 cleandoc:
 	test -d $(DOCDIR) && rm -- $(DOCDIR)/*.html || true
@@ -130,7 +130,7 @@ snapshot:
 dist: snapshot
 
 todo:
-	@grep --color -Ion '\(TODO\|XXX\).*' -r ranger
+	@grep --color -Ion '\(TODO\|XXX\).*' -r power-ranger
 
 .PHONY: clean cleandoc compile default dist doc help install man manhtml \
 	options snapshot test test_pylint test_flake8 test_doctest test_pytest \

@@ -1,4 +1,4 @@
-# This file is part of ranger, the console file manager.
+# This file is part of power-ranger, the console file manager.
 # License: GNU GPL version 3, see the file "AUTHORS" for details.
 
 from __future__ import (absolute_import, division, print_function)
@@ -6,8 +6,8 @@ from __future__ import (absolute_import, division, print_function)
 import sys
 import curses
 
-from ranger.gui.color import get_color
-from ranger.core.shared import SettingsAware
+from power-ranger.gui.color import get_color
+from power-ranger.core.shared import SettingsAware
 
 REVERSE_ADDCH_ARGS = sys.version[0:5] == '3.4.0'
 

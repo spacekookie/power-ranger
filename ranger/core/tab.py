@@ -1,4 +1,4 @@
-# This file is part of ranger, the console file manager.
+# This file is part of power-ranger, the console file manager.
 # License: GNU GPL version 3, see the file "AUTHORS" for details.
 
 from __future__ import (absolute_import, division, print_function)
@@ -7,9 +7,9 @@ import os
 from os.path import abspath, normpath, join, expanduser, isdir
 import sys
 
-from ranger.container import settings
-from ranger.container.history import History
-from ranger.core.shared import FileManagerAware, SettingsAware
+from power-ranger.container import settings
+from power-ranger.container.history import History
+from power-ranger.core.shared import FileManagerAware, SettingsAware
 
 
 class Tab(FileManagerAware, SettingsAware):  # pylint: disable=too-many-instance-attributes

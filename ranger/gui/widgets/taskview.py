@@ -1,11 +1,11 @@
-# This file is part of ranger, the console file manager.
+# This file is part of power-ranger, the console file manager.
 # License: GNU GPL version 3, see the file "AUTHORS" for details.
 
 """The TaskView allows you to modify what the loader is doing."""
 
 from __future__ import (absolute_import, division, print_function)
 
-from ranger.ext.accumulator import Accumulator
+from power-ranger.ext.accumulator import Accumulator
 
 from . import Widget
 

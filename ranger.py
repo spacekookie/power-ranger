@@ -1,18 +1,18 @@
 #!/usr/bin/python -O
-# This file is part of ranger, the console file manager.  (coding: utf-8)
+# This file is part of power-ranger, the console file manager.  (coding: utf-8)
 # License: GNU GPL version 3, see the file "AUTHORS" for details.
 
 # =====================
 # This embedded bash script can be executed by sourcing this file.
-# It will cd to ranger's last location after you exit it.
-# The first argument specifies the command to run ranger, the
-# default is simply "ranger". (Not this file itself!)
-# The other arguments are passed to ranger.
+# It will cd to power-ranger's last location after you exit it.
+# The first argument specifies the command to run power-ranger, the
+# default is simply "power-ranger". (Not this file itself!)
+# The other arguments are passed to power-ranger.
 """":
 tempfile="$(mktemp -t tmp.XXXXXX)"
-ranger="${1:-ranger}"
+power-ranger="${1:-power-ranger}"
 test -z "$1" || shift
-"$ranger" --choosedir="$tempfile" "${@:-$(pwd)}"
+"$power-ranger" --choosedir="$tempfile" "${@:-$(pwd)}"
 returnvalue=$?
 test -f "$tempfile" &&
 if [ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]; then
@@ -31,6 +31,6 @@ import sys
 ARGV = sys.argv[1:sys.argv.index('--')] if '--' in sys.argv else sys.argv[1:]
 sys.dont_write_bytecode = '-c' in ARGV or '--clean' in ARGV
 
-# Start ranger
-import ranger  # NOQA pylint: disable=import-self,wrong-import-position
-sys.exit(ranger.main())  # pylint: disable=no-member
+# Start power-ranger
+import power-ranger  # NOQA pylint: disable=import-self,wrong-import-position
+sys.exit(power-ranger.main())  # pylint: disable=no-member

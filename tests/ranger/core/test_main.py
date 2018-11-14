@@ -1,7 +1,7 @@
 import collections
 import os
 
-from ranger.core import main
+from power-ranger.core import main
 
 
 def test_get_paths():

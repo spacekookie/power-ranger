@@ -1,4 +1,4 @@
-# This file is part of ranger, the console file manager.
+# This file is part of power-ranger, the console file manager.
 # License: GNU GPL version 3, see the file "AUTHORS" for details.
 
 """The statusbar displays information about the current file and directory.
@@ -17,8 +17,8 @@ from pwd import getpwuid
 from grp import getgrgid
 from time import time, strftime, localtime
 
-from ranger.ext.human_readable import human_readable
-from ranger.gui.bar import Bar
+from power-ranger.ext.human_readable import human_readable
+from power-ranger.gui.bar import Bar
 
 from . import Widget
 

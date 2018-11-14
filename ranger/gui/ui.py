@@ -1,4 +1,4 @@
-# This file is part of ranger, the console file manager.
+# This file is part of power-ranger, the console file manager.
 # License: GNU GPL version 3, see the file "AUTHORS" for details.
 
 from __future__ import (absolute_import, division, print_function)
@@ -9,10 +9,10 @@ import threading
 import curses
 from subprocess import CalledProcessError
 
-from ranger.ext.keybinding_parser import KeyBuffer, KeyMaps, ALT_KEY
-from ranger.ext.lazy_property import lazy_property
-from ranger.ext.signals import Signal
-from ranger.ext.spawn import check_output
+from power-ranger.ext.keybinding_parser import KeyBuffer, KeyMaps, ALT_KEY
+from power-ranger.ext.lazy_property import lazy_property
+from power-ranger.ext.signals import Signal
+from power-ranger.ext.spawn import check_output
 
 from .displayable import DisplayableContainer
 from .mouse_event import MouseEvent
@@ -124,7 +124,7 @@ class UI(  # pylint: disable=too-many-instance-attributes,too-many-public-method
         self.is_on = True
 
         if self.settings.update_tmux_title and 'TMUX' in os.environ:
-            sys.stdout.write("\033kranger\033\\")
+            sys.stdout.write("\033kpower-ranger\033\\")
             sys.stdout.flush()
 
         if 'vcsthread' in self.__dict__:
@@ -278,11 +278,11 @@ class UI(  # pylint: disable=too-many-instance-attributes,too-many-public-method
 
     def setup(self):
         """Build up the UI by initializing widgets."""
-        from ranger.gui.widgets.titlebar import TitleBar
-        from ranger.gui.widgets.console import Console
-        from ranger.gui.widgets.statusbar import StatusBar
-        from ranger.gui.widgets.taskview import TaskView
-        from ranger.gui.widgets.pager import Pager
+        from power-ranger.gui.widgets.titlebar import TitleBar
+        from power-ranger.gui.widgets.console import Console
+        from power-ranger.gui.widgets.statusbar import StatusBar
+        from power-ranger.gui.widgets.taskview import TaskView
+        from power-ranger.gui.widgets.pager import Pager
 
         # Create a titlebar
         self.titlebar = TitleBar(self.win)
@@ -317,7 +317,7 @@ class UI(  # pylint: disable=too-many-instance-attributes,too-many-public-method
     @lazy_property
     def vcsthread(self):
         """VCS thread"""
-        from ranger.ext.vcs import VcsThread
+        from power-ranger.ext.vcs import VcsThread
         thread = VcsThread(self)
         thread.start()
         return thread
@@ -387,7 +387,7 @@ class UI(  # pylint: disable=too-many-instance-attributes,too-many-public-method
             except UnicodeError:
                 pass
             else:
-                sys.stdout.write("%sranger:%s%s" % fmt_tup)
+                sys.stdout.write("%spower-ranger:%s%s" % fmt_tup)
                 sys.stdout.flush()
 
         self.win.refresh()
@@ -512,9 +512,9 @@ class UI(  # pylint: disable=too-many-instance-attributes,too-many-public-method
     @staticmethod
     def _viewmode_to_class(viewmode):
         if viewmode == 'miller':
-            from ranger.gui.widgets.view_miller import ViewMiller
+            from power-ranger.gui.widgets.view_miller import ViewMiller
             return ViewMiller
         elif viewmode == 'multipane':
-            from ranger.gui.widgets.view_multipane import ViewMultipane
+            from power-ranger.gui.widgets.view_multipane import ViewMultipane
             return ViewMultipane
         return None

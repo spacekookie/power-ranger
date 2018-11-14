@@ -1,11 +1,11 @@
 #!/usr/bin/python
-# This file is part of ranger, the console file manager.
+# This file is part of power-ranger, the console file manager.
 # License: GNU GPL version 3, see the file "AUTHORS" for details.
 
-"""rifle, the file executor/opener of ranger
+"""rifle, the file executor/opener of power-ranger
 
 This can be used as a standalone program or can be embedded in python code.
-When used together with ranger, it doesn't have to be installed to $PATH.
+When used together with power-ranger, it doesn't have to be installed to $PATH.
 
 Example usage:
 
@@ -29,10 +29,10 @@ DEFAULT_EDITOR = 'vim'
 ASK_COMMAND = 'ask'
 ENCODING = 'utf-8'
 
-# Imports from ranger library, plus reimplementations in case ranger is not
+# Imports from power-ranger library, plus reimplementations in case power-ranger is not
 # installed so rifle can be run as a standalone program.
 try:
-    from ranger.ext.get_executables import get_executables
+    from power-ranger.ext.get_executables import get_executables
 except ImportError:
     _CACHED_EXECUTABLES = None
 
@@ -70,7 +70,7 @@ except ImportError:
 
 
 try:
-    from ranger.ext.popen_forked import Popen_forked
+    from power-ranger.ext.popen_forked import Popen_forked
 except ImportError:
     def Popen_forked(*args, **kwargs):  # pylint: disable=invalid-name
         """Forks process and runs Popen with the given args and kwargs."""
@@ -151,8 +151,8 @@ class Rifle(object):  # pylint: disable=too-many-instance-attributes
 
         # get paths for mimetype files
         self._mimetype_known_files = [os.path.expanduser("~/.mime.types")]
-        if __file__.endswith("ranger/ext/rifle.py"):
-            # Add ranger's default mimetypes when run from ranger directory
+        if __file__.endswith("power-ranger/ext/rifle.py"):
+            # Add power-ranger's default mimetypes when run from power-ranger directory
             self._mimetype_known_files.append(
                 __file__.replace("ext/rifle.py", "data/mime.types"))
 
@@ -388,11 +388,11 @@ class Rifle(object):  # pylint: disable=too-many-instance-attributes
                                          "using rifle to determine fallback.  "
                                          "Please set $TERMCMD manually or "
                                          "change fallbacks in rifle.conf.")
-                        self._mimetype = 'ranger/x-terminal-emulator'
+                        self._mimetype = 'power-ranger/x-terminal-emulator'
                         self.execute(
                             files=[command.split(';')[1].split('--')[0].strip()]
                             + files, flags='f',
-                            mimetype='ranger/x-terminal-emulator')
+                            mimetype='power-ranger/x-terminal-emulator')
                         return None
 
                     # Choose correct cmdflag accordingly
@@ -443,21 +443,21 @@ class Rifle(object):  # pylint: disable=too-many-instance-attributes
 def find_conf_path():
     # Find configuration file path
     if 'XDG_CONFIG_HOME' in os.environ and os.environ['XDG_CONFIG_HOME']:
-        conf_path = os.environ['XDG_CONFIG_HOME'] + '/ranger/rifle.conf'
+        conf_path = os.environ['XDG_CONFIG_HOME'] + '/power-ranger/rifle.conf'
     else:
-        conf_path = os.path.expanduser('~/.config/ranger/rifle.conf')
+        conf_path = os.path.expanduser('~/.config/power-ranger/rifle.conf')
     default_conf_path = conf_path
     if not os.path.isfile(conf_path):
         conf_path = os.path.normpath(os.path.join(os.path.dirname(__file__),
                                                   '../config/rifle.conf'))
     if not os.path.isfile(conf_path):
         try:
-            # if ranger is installed, get the configuration from ranger
-            import ranger
+            # if power-ranger is installed, get the configuration from power-ranger
+            import power-ranger
         except ImportError:
             pass
         else:
-            conf_path = os.path.join(ranger.__path__[0], "config", "rifle.conf")
+            conf_path = os.path.join(power-ranger.__path__[0], "config", "rifle.conf")
 
     if not os.path.isfile(conf_path):
         sys.stderr.write("Could not find a configuration file.\n"

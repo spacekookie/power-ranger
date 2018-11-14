@@ -1,25 +1,25 @@
-# Tested with ranger 1.7.0 through ranger 1.7.*
+# Tested with power-ranger 1.7.0 through power-ranger 1.7.*
 #
-# This plugin creates a FIFO in /tmp/ranger-ipc.<PID> to which any
+# This plugin creates a FIFO in /tmp/power-ranger-ipc.<PID> to which any
 # other program may write. Lines written to this file are evaluated by
-# ranger as the ranger :commands.
+# power-ranger as the power-ranger :commands.
 #
 # Example:
-#   $ echo tab_new ~/images > /tmp/ranger-ipc.1234
+#   $ echo tab_new ~/images > /tmp/power-ranger-ipc.1234
 
 from __future__ import (absolute_import, division, print_function)
 
-import ranger.api
+import power-ranger.api
 
 
-HOOK_INIT_OLD = ranger.api.hook_init
+HOOK_INIT_OLD = power-ranger.api.hook_init
 
 
 def hook_init(fm):
     try:
         # Create a FIFO.
         import os
-        ipc_fifo = "/tmp/ranger-ipc." + str(os.getpid())
+        ipc_fifo = "/tmp/power-ranger-ipc." + str(os.getpid())
         os.mkfifo(ipc_fifo)
 
         # Start the reader thread.
@@ -35,7 +35,7 @@ def hook_init(fm):
                     fm.execute_console(line.strip())
         thread.start_new_thread(ipc_reader, (ipc_fifo,))
 
-        # Remove the FIFO on ranger exit.
+        # Remove the FIFO on power-ranger exit.
         def ipc_cleanup(filepath):
             try:
                 os.unlink(filepath)
@@ -50,4 +50,4 @@ def hook_init(fm):
         HOOK_INIT_OLD(fm)
 
 
-ranger.api.hook_init = hook_init
+power-ranger.api.hook_init = hook_init

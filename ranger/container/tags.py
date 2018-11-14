@@ -1,4 +1,4 @@
-# This file is part of ranger, the console file manager.
+# This file is part of power-ranger, the console file manager.
 # License: GNU GPL version 3, see the file "AUTHORS" for details.
 
 # TODO: add a __getitem__ method to get the tag of a file
@@ -134,7 +134,7 @@ class Tags(object):
 
 
 class TagsDummy(Tags):
-    """A dummy Tags class for use with `ranger --clean`.
+    """A dummy Tags class for use with `power-ranger --clean`.
 
     It acts like there are no tags and avoids writing any changes.
     """

@@ -1,4 +1,4 @@
-# This file is part of ranger, the console file manager.
+# This file is part of power-ranger, the console file manager.
 # License: GNU GPL version 3, see the file "AUTHORS" for details.
 
 from __future__ import (absolute_import, division, print_function)
@@ -6,7 +6,7 @@ from __future__ import (absolute_import, division, print_function)
 import re
 import sys
 
-from ranger.container.fsobject import FileSystemObject
+from power-ranger.container.fsobject import FileSystemObject
 
 N_FIRST_BYTES = 256
 CONTROL_CHARACTERS = set(list(range(0, 9)) + list(range(14, 32)))
